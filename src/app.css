@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=SUSE:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=SUSE:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
 @theme {
 	--font-suse: 'SUSE', sans-serif;
-	--font-story: 'Story Script', sans-serif;
+	--font-great: 'Great Vibes', sans-serif;
 }
 
 @layer base {
@@ -13,11 +13,15 @@
 	}
 }
 
+/* Scrollbar */
+:root {
+	overflow: scroll;
+	scrollbar-color: rgba(255, 255, 255, 255) rgba(0, 0, 0, 0);
+	scrollbar-width: thin;
+}
+
 @layer components {
 	.button-dialog {
-		@apply 
-            w-full rounded-full border-2 border-white bg-gray-900 p-2 font-medium text-white
-            hover:border-gray-900 hover:bg-white hover:text-gray-900    
-      ;
+		@apply w-full rounded-full border-2 border-white bg-gray-900 p-2 font-medium text-white hover:border-gray-900 hover:bg-white hover:text-gray-900;
 	}
 }

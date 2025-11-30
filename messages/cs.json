@@ -1,14 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"settingsMenu": "Nastavení",
-	"feedback": "Zpětná vazba",
-	"copyright": "© 2025 Martin Bykov. Všechna práva vyhrazena.",
 	"nameShort": "FestIES",
 	"nameLong": "Sváteční informační a zábavní systém",
-	"credits": "Poděkování",
-	"close": "Zavřít",
-	"help": "Nápověda",
-	"changelog": "Seznam změn",
 	"untilNewYearRemainingDotDotDot": "Do Nového roku zbývá...",
 	"followingCities": "Následující města",
 	"citiesAlreadyInTheNewYear": "Města, která jsou již v Novém roce",
@@ -34,5 +27,8 @@
 	"millisecondP": "milisekund",
 	"musicPlayer": "Hudební přehrávač",
 	"timezoneMap": "Mapa časových pásem",
-	"clock": "Hodiny"
+	"clock": "Hodiny",
+	"noCitiesHaveGoneIntoTheNewYearYet": "Žádná města ještě nevstoupila do Nového roku",
+	"allCitiesAreAlreadyInTheNewYear": "Všechna města jsou již v Novém roce",
+	"merryChristmasAndAHappyNewYearExclamation": "Veselé Vánoce a šťastný Nový rok!"
 }

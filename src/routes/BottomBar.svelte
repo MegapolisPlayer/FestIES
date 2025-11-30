@@ -3,7 +3,7 @@
 	import { m } from '$lib/paraglide/messages';
 	import { onDestroy, onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-    import IconButton from './IconButton.svelte';
+    import IconButton from './items/IconButton.svelte';
     import type { LanguageType } from '$lib/types';
 
 	let {
@@ -63,7 +63,7 @@
 			onclick={() => {
 				helpModal = true;
 			}}
-			label={m.help({}, { locale: currentLocale as LanguageType })}
+			label="Help"
             emoji={"question"}
             triggered={helpModal}
 		/>
@@ -72,7 +72,7 @@
 			onclick={() => {
 				settingsModal = true;
 			}}
-			label={m.settingsMenu({}, { locale: currentLocale as LanguageType })}
+			label="Settings"
             emoji={"settings-3"}
             triggered={settingsModal}
 		/>
@@ -81,7 +81,7 @@
 			onclick={() => {
 				feedbackModal = true;
 			}}
-			label={m.feedback({}, { locale: currentLocale as LanguageType })}
+			label="Send feedback"
             triggered={feedbackModal}
             emoji={"feedback"}
 		/>
@@ -90,7 +90,7 @@
 			onclick={() => {
 				changelogModal = true;
 			}}
-			label={m.changelog({}, { locale: currentLocale as LanguageType })}
+			label="Changelog"
             emoji={"file-edit"}
             triggered={changelogModal}
 		/>
@@ -99,7 +99,7 @@
 			onclick={() => {
 				authorModal = true;
 			}}
-			label={m.credits({}, { locale: currentLocale as LanguageType })}
+			label="Credits"
             emoji={"user-3"}
             triggered={authorModal}
 		/>

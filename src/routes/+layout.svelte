@@ -3,7 +3,7 @@
 	import favicon from '$lib/assets/favicon.svg';
 	import 'remixicon/fonts/remixicon.css';
 	import { m } from '$lib/paraglide/messages';
-	import Canvas from './Canvas.svelte';
+	import Snowflakes from './Snowflakes.svelte';
 
 	let { children } = $props();
 </script>
@@ -17,7 +17,7 @@
 
 <div class="text-white relative flex w-full grow flex-col overflow-x-hidden overflow-y-hidden min-h-screen h-screen max-h-screen">
 	<div class="w-full h-full absolute z-1 bg-red-950"></div>
-	<Canvas />
+	<Snowflakes />
 	<div class="z-10 flex w-full grow flex-col overflow-x-hidden overflow-y-hidden">
 		{@render children?.()}
 	</div>

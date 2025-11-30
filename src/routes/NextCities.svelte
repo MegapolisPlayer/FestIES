@@ -1,11 +1,27 @@
 <script lang="ts">
     import { m } from "$lib/paraglide/messages";
 	import type { LanguageType } from "$lib/types";
+	import { timezoneList } from "$lib";
+	import TimezoneItem from "./items/TimezoneItem.svelte";
 
-    let { locale } = $props();
+    let { locale, now, target } = $props();
+
+	let timezones = $state(timezoneList.filter((v) => {
+		return ((target.getTime() - (v.hour+(now.getTimezoneOffset()/60)) * 3600000) - now.getTime()) > 0;
+	}));
 </script>
 
-<div class="flex flex-col grow h-full w-1/4 rounded-4xl bg-black/20 p-5">
+<div class="gap-4 flex flex-col grow h-full min-w-1/5 w-1/5 max-w-1/5 rounded-4xl bg-black/20 p-5">
     <h2 class="text-2xl font-medium text-center w-full">{m.followingCities({}, { locale: locale as LanguageType})}</h2>
-    <div class="grow"></div>
+	{#if timezones.length > 0}
+	<div class="grow flex flex-col gap-2 overflow-x-hidden! overflow-y-scroll! max-w-full">
+		{#each timezones as timezone, i (i)}
+			<TimezoneItem {timezone} {target} {now}/>
+		{/each}
+	</div>
+	{:else}
+	<div class="flex flex-col grow w-full justify-center items-center">
+		{m.allCitiesAreInTheNewYear({}, { locale: locale as LanguageType })}
+	</div>
+	{/if}
 </div>

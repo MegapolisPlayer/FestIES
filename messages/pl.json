@@ -1,14 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"settingsMenu": "Ustawienia",
-	"feedback": "Opinie",
-	"copyright": "© 2025 Martin Bykov. Wszelkie prawa zastrzeżone.",
 	"nameShort": "FestIES",
 	"nameLong": "Świąteczny System Informacji i Rozrywki",
-	"credits": "Podziękowania",
-	"close": "Zamknij",
-	"help": "Pomoc",
-	"changelog": "Dziennik zmian",
 	"untilNewYearRemainingDotDotDot": "Czas do Nowego Roku...",
 	"followingCities": "Następne miasta",
 	"citiesAlreadyInTheNewYear": "Miasta już w Nowym Roku",
@@ -34,5 +27,8 @@
 	"millisecondP": "milisekund",
 	"musicPlayer": "Odtwarzacz muzyki",
 	"timezoneMap": "Mapa stref czasowych",
-	"clock": "Zegar"
+	"clock": "Zegar",
+	"noCitiesHaveGoneIntoTheNewYearYet": "Żadne miasta jeszcze nie weszły w Nowy Rok",
+	"allCitiesAreAlreadyInTheNewYear": "Wszystkie miasta są już w Nowym Roku",
+	"merryChristmasAndAHappyNewYearExclamation": "Wesołych Świąt i Szczęśliwego Nowego Roku!"
 }

@@ -1,14 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"settingsMenu": "Настройки",
-	"feedback": "Обратная связь",
-	"copyright": "© 2025 Martin Bykov. Все права защищены.",
 	"nameShort": "FestIES",
 	"nameLong": "Праздничная информационно-развлекательная система",
-	"credits": "Благодарности",
-	"close": "Закрыть",
-	"help": "Помощь",
-	"changelog": "Журнал изменений",
 	"untilNewYearRemainingDotDotDot": "Время до Нового года...",
 	"followingCities": "Следующие города",
 	"citiesAlreadyInTheNewYear": "Города, уже в Новом году",
@@ -34,5 +27,8 @@
 	"millisecondP": "миллисекунд",
 	"musicPlayer": "Музыкальный плеер",
 	"timezoneMap": "Карта часовых поясов",
-	"clock": "Часы"
+	"clock": "Часы",
+	"noCitiesHaveGoneIntoTheNewYearYet": "Еще нет городов, вошедших в Новый год",
+	"allCitiesAreAlreadyInTheNewYear": "Все города уже в Новом году",
+	"merryChristmasAndAHappyNewYearExclamation": "С Рождеством и с Новым годом!"
 }

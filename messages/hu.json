@@ -1,14 +1,7 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"settingsMenu": "Beállítások",
-	"feedback": "Visszajelzés",
-	"copyright": "© 2025 Martin Bykov. Minden jog fenntartva.",
 	"nameShort": "FestIES",
 	"nameLong": "Ünnepi Információs és Szórakoztató Rendszer",
-	"credits": "Közreműködők",
-	"close": "Bezárás",
-	"help": "Súgó",
-	"changelog": "Változásnapló",
 	"untilNewYearRemainingDotDotDot": "Idő az új évig...",
 	"followingCities": "Következő városok",
 	"citiesAlreadyInTheNewYear": "Már az új évben lévő városok",
@@ -34,5 +27,8 @@
 	"millisecondP": "milliszekundumok",
 	"musicPlayer": "Zenelejátszó",
 	"timezoneMap": "Időzóna térkép",
-	"clock": "Óra"
+	"clock": "Óra",
+	"noCitiesHaveGoneIntoTheNewYearYet": "Egy város sem lépett még az új évbe",
+	"allCitiesAreAlreadyInTheNewYear": "Minden város már az új évben van",
+	"merryChristmasAndAHappyNewYearExclamation": "Kellemes Karácsonyt és Boldog Új Évet!"
 }

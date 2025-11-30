@@ -1,14 +1,7 @@
 {
     "$schema": "https://inlang.com/schema/inlang-message-format",
-    "settingsMenu": "Налаштування",
-    "feedback": "Зворотній зв'язок",
-    "copyright": "© 2025 Martin Bykov. Усі права захищені.",
     "nameShort": "FestIES",
     "nameLong": "Святкова інформаційно-розважальна система",
-    "credits": "Подяки",
-    "close": "Закрити",
-    "help": "Допомога",
-    "changelog": "Журнал змін",
     "untilNewYearRemainingDotDotDot": "Час до Нового року...",
     "followingCities": "Наступні міста",
     "citiesAlreadyInTheNewYear": "Міста, які вже у Новому році",
@@ -34,5 +27,8 @@
     "millisecondP": "мілісекунд",
     "musicPlayer": "Музичний плеєр",
     "timezoneMap": "Карта часових поясів",
-    "clock": "Годинник"
+    "clock": "Годинник",
+	"noCitiesHaveGoneIntoTheNewYearYet": "Ще немає міст, які увійшли в Новий рік",	
+	"allCitiesAreAlreadyInTheNewYear": "Всі міста вже у Новому році",
+	"merryChristmasAndAHappyNewYearExclamation": "З Різдвом та з Новим роком!"
 }

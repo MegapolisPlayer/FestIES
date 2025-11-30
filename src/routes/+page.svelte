@@ -2,7 +2,7 @@
 	import BottomBar from './BottomBar.svelte';
 	import Modal from './Modal.svelte';
 	import { m } from '$lib/paraglide/messages';
-	import Button from './Button.svelte';
+	import Button from './items/Button.svelte';
 	import Countdown from './Countdown.svelte';
 	import { onDestroy, onMount } from 'svelte';
 	import { locales } from '$lib/paraglide/runtime';
@@ -11,8 +11,13 @@
 	import type { LanguageType } from '$lib/types';
 	import MusicPlayer from './MusicPlayer.svelte';
 	import Timezone from './Timezone.svelte';
-    import AnalogClock from './AnalogClock.svelte';
+	import AnalogClock from './AnalogClock.svelte';
 	import JourneyBar from './JourneyBar.svelte';
+	import AuthorModal from './modals/AuthorModal.svelte';
+	import HelpModal from './modals/HelpModal.svelte';
+	import FeedbackModal from './modals/FeedbackModal.svelte';
+	import ChangelogModal from './modals/ChangelogModal.svelte';
+	import SettingsModal from './modals/SettingsModal.svelte';
 
 	let settingsModal = $state(false);
 	let feedbackModal = $state(false);
@@ -24,6 +29,11 @@
 	let currentLocaleIndex = $state(0);
 	let currentLocale = $state('');
 
+	let interval: NodeJS.Timeout | undefined = $state(undefined);
+	let now = $state(new Date());
+	//let target = $state(new Date(2026, 0, 1, 0, 0, 0, 0));
+	let target = $state(new Date(2025, 11, 1, 0, 0, 0, 0)); //DEBUG
+
 	const updateLocale = () => {
 		currentLocaleIndex++;
 		if (currentLocaleIndex === locales.length) currentLocaleIndex = 0;
@@ -32,38 +42,41 @@
 
 	onMount(() => {
 		localeInterval = setInterval(updateLocale, 3000);
+		interval = setInterval(() => {
+			now = new Date();
+		}, 5);
 	});
 	onDestroy(() => {
 		clearInterval(localeInterval);
+		clearInterval(interval);
 	});
 </script>
 
-<div class="flex w-full grow flex-col gap-2 h-full">
-	<div class="flex w-full grow-5 flex-row gap-6 p-5 pb-0!">
-		<PrevCities locale={currentLocale} />
+<div class="flex h-full w-full grow flex-col gap-6 *:overflow-x-hidden! *:overflow-y-scroll!">
+	<div class="flex grow-5 flex-row gap-6 p-5 pb-0!">
+		<PrevCities {target} {now} locale={currentLocale} />
 
-		<div class="flex w-full flex-col items-center justify-center gap-6">
-			<Countdown target={new Date(2026, 0, 1, 0, 0, 0, 0)} locale={currentLocale} />
+		<div class="flex grow flex-col items-center justify-center gap-6 overflow-hidden">
+			<Countdown {now} {target} locale={currentLocale} isNewYear={now > target} />
 
-			<div class="grow-2 flex w-full flex-row items-center justify-center gap-6">
-				<Timezone locale={currentLocale}/>
-                
-                <div class="flex grow flex-col gap-6 h-full justify-center items-center">
-					<AnalogClock 
-                        locale={currentLocale}
-                    />
-                    
-                    <MusicPlayer
+			<div class="flex w-full grow-2 flex-row items-center justify-center gap-6">
+				<Timezone locale={currentLocale} />
+
+				<div class="flex h-full grow flex-col items-center justify-center gap-6">
+					<AnalogClock locale={currentLocale} {now} />
+
+					<MusicPlayer
 						link={'https://www.youtube-nocookie.com/embed/videoseries?si=nnVK9IsAMkVeEzF5&amp;list=PL5d1YE_8Im7MNADxq70-5zrxpCdOJkICX'}
 						locale={currentLocale}
+						switchedToHandel={now > target}
 					/>
 				</div>
 			</div>
 		</div>
 
-		<NextCities locale={currentLocale} />
+		<NextCities {target} {now} locale={currentLocale} />
 	</div>
-    <JourneyBar />
+	<JourneyBar locale={currentLocale}/>
 </div>
 
 <BottomBar
@@ -75,52 +88,12 @@
 	bind:changelogModal
 />
 
-<Modal bind:showModal={settingsModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">
-			{m.settingsMenu({}, { locale: currentLocale as LanguageType })}
-		</h2>
-	</div>
-</Modal>
+<SettingsModal  bind:settingsModal />
 
-<Modal bind:showModal={feedbackModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">{m.feedback({}, { locale: currentLocale as LanguageType })}</h2>
-	</div>
-</Modal>
+<FeedbackModal bind:feedbackModal />
 
-<Modal bind:showModal={authorModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">{m.credits({}, { locale: currentLocale as LanguageType })}</h2>
+<AuthorModal bind:authorModal />
 
-		<Button
-			text={m.close()}
-			emoji={'close-circle'}
-			onclick={() => {
-				authorModal = false;
-			}}
-		/>
-	</div>
-</Modal>
+<ChangelogModal bind:changelogModal />
 
-<Modal bind:showModal={changelogModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">
-			{m.changelog({}, { locale: currentLocale as LanguageType })}
-		</h2>
-	</div>
-</Modal>
-
-<Modal bind:showModal={changelogModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">
-			{m.changelog({}, { locale: currentLocale as LanguageType })}
-		</h2>
-	</div>
-</Modal>
-
-<Modal bind:showModal={helpModal}>
-	<div class="flex w-full grow flex-col gap-2 text-white">
-		<h2 class="text-xl font-medium">{m.help({}, { locale: currentLocale as LanguageType })}</h2>
-	</div>
-</Modal>
+<HelpModal bind:helpModal />
