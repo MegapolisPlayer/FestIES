@@ -1,12 +1,24 @@
 <script lang="ts">
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
+	import 'remixicon/fonts/remixicon.css';
+	import { m } from '$lib/paraglide/messages';
+	import Canvas from './Canvas.svelte';
 
 	let { children } = $props();
 </script>
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>
+		{m.nameShort()}
+	</title>
 </svelte:head>
 
-{@render children?.()}
+<div class="text-white relative flex w-full grow flex-col overflow-x-hidden overflow-y-hidden min-h-screen h-screen max-h-screen">
+	<div class="w-full h-full absolute z-1 bg-red-950"></div>
+	<Canvas />
+	<div class="z-10 flex w-full grow flex-col overflow-x-hidden overflow-y-hidden">
+		{@render children?.()}
+	</div>
+</div>

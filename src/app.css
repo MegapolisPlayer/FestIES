@@ -1,2 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=SUSE:ital,wght@0,100..900;1,100..900&family=Story+Script&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme {
+	--font-suse: 'SUSE', sans-serif;
+	--font-story: 'Story Script', sans-serif;
+}
+
+@layer base {
+	:root {
+		@apply font-suse font-light;
+	}
+}
+
+@layer components {
+	.button-dialog {
+		@apply 
+            w-full rounded-full border-2 border-white bg-gray-900 p-2 font-medium text-white
+            hover:border-gray-900 hover:bg-white hover:text-gray-900    
+      ;
+	}
+}
