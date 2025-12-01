@@ -29,13 +29,13 @@
 						<label for="hasplaylist">Add music player</label>
 					</span>
 					{#if hasPlaylist}
-					<input
-						type="text"
-						name="playlist"
-						class="rounded-lg bg-white p-2 text-gray-700"
-						placeholder="Enter link here..."
-						required
-					/>
+						<input
+							type="text"
+							name="playlist"
+							class="rounded-lg bg-white p-2 text-gray-700"
+							placeholder="Enter link here..."
+							required
+						/>
 					{/if}
 
 					<h2 class="text-lg">Clock settings</h2>

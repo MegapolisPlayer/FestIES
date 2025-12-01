@@ -10,5 +10,5 @@
 		{m.timezoneMap({}, { locale: locale as LanguageType })}
 	</h2>
 
-    <canvas>Canvas element not supported!</canvas>
+	<canvas>Canvas element not supported!</canvas>
 </div>

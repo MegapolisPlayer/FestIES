@@ -123,7 +123,7 @@
 	onDestroy(() => {
 		clearInterval(interval);
 		clearInterval(interval2);
-	})
+	});
 </script>
 
 <canvas id={value} class="absolute z-9 h-screen w-screen opacity-70">

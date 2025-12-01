@@ -25,6 +25,6 @@
 	}
 
 	.checkbox {
-		@apply accent-gray-900 text-white rounded-4xl hover:accent-gray-700;
-	};
+		@apply rounded-4xl text-white accent-gray-900 hover:accent-gray-700;
+	}
 }

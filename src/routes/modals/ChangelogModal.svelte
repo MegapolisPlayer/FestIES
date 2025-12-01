@@ -9,10 +9,10 @@
 	<div class="flex w-full grow flex-col gap-2 text-white">
 		<h2 class="text-xl font-medium">Changelog</h2>
 
-		<div class="w-full max-w-full min-w-full text-white flex flex-col gap-0">
+		<div class="flex w-full max-w-full min-w-full flex-col gap-0 text-white">
 			<h2 class="text-xl">FestIES 1.0</h2>
 			<p class="italic opacity-50">30.11.2025</p>
-			<ul class="list-disc list-inside">
+			<ul class="list-inside list-disc">
 				<li>Original version</li>
 			</ul>
 		</div>

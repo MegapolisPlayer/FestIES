@@ -12,23 +12,31 @@ export const actions = {
 		console.log(formData);
 
 		if (
-			!formData.has("bg") ||
-			(!formData.has("playlist") && formData.get("hasplaylist")?.toString() === "on")
+			!formData.has('bg') ||
+			(!formData.has('playlist') && formData.get('hasplaylist')?.toString() === 'on')
 		) {
 			return fail(400, {});
 		}
 
 		let langs: string[] = [];
 		for (let i = 0; i < locales.length; i++) {
-			if (formData.get("lang-" + locales[i])?.toString() === "on") {
+			if (formData.get('lang-' + locales[i])?.toString() === 'on') {
 				langs.push(locales[i]);
 			}
 		}
 
-		event.cookies.set("background", formData.get("bg")?.toString() as string, { path: '/' });
-		event.cookies.set("languages", JSON.stringify(langs), { path: '/' });
-		event.cookies.set("playlist", formData.get("playlist")?.toString() as string ?? "", { path: '/' });
-		event.cookies.set("millisecond", String(formData.get("millisecond")?.toString() as string === "on"), { path: '/' });
-		event.cookies.set("journey", String(formData.get("journey")?.toString() as string === "on"), { path: '/' });
+		event.cookies.set('background', formData.get('bg')?.toString() as string, { path: '/' });
+		event.cookies.set('languages', JSON.stringify(langs), { path: '/' });
+		event.cookies.set('playlist', (formData.get('playlist')?.toString() as string) ?? '', {
+			path: '/'
+		});
+		event.cookies.set(
+			'millisecond',
+			String((formData.get('millisecond')?.toString() as string) === 'on'),
+			{ path: '/' }
+		);
+		event.cookies.set('journey', String((formData.get('journey')?.toString() as string) === 'on'), {
+			path: '/'
+		});
 	}
 };

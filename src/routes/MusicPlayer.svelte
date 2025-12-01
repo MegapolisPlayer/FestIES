@@ -13,9 +13,7 @@
 	</h2>
 
 	{#if switchedToHandel}
-		<div>
-			
-		</div>
+		<div></div>
 	{:else}
 		<iframe
 			class=""

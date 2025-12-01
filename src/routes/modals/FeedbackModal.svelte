@@ -15,7 +15,8 @@
 	>
 		<h2 class="text-xl font-medium">Send feedback</h2>
 
-		<textarea name="message" class="bg-white p-2 text-gray-700" placeholder="Enter message here..."> </textarea>
+		<textarea name="message" class="bg-white p-2 text-gray-700" placeholder="Enter message here...">
+		</textarea>
 		<Button text="Send" emoji={'send-plane'} type="submit"></Button>
 
 		<p>

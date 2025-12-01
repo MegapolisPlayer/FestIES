@@ -51,13 +51,12 @@
 	});
 </script>
 
-<div class="flex w-full grow flex-col gap-6 h-full overflow-hidden">
+<div class="flex h-full w-full grow flex-col gap-6 overflow-hidden">
 	<div class="flex grow-5 flex-row gap-6 p-5 pb-0!">
 		<PrevCities {target} {now} locale={currentLocale} />
 
 		<div class="flex grow flex-col items-center justify-center gap-6 overflow-hidden">
 			<Countdown {now} {target} locale={currentLocale} isNewYear={now > target} />
-
 
 			<div class="flex w-full grow flex-row items-center justify-center gap-6 *:h-full">
 				<Timezone locale={currentLocale} />
