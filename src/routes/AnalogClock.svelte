@@ -19,7 +19,6 @@
 
 	let interval: NodeJS.Timeout | undefined = $state(undefined);
 
-	//TODO fix for different canvases
 	onMount(() => {
 		if (!browser) return;
 
@@ -58,6 +57,17 @@
 		}).observe(canvas);
 
 		interval = setInterval(() => {
+			//vars
+			let xStart, yStart;
+
+			if (minSizeAxis == 'x') {
+				xStart = minSize / 2;
+				yStart = maxSize / 2;
+			} else {
+				xStart = maxSize / 2;
+				yStart = minSize / 2;
+			}
+
 			//background
 
 			context?.clearRect(0, 0, sizeX, sizeY);
@@ -67,11 +77,7 @@
 
 			context.lineWidth = 3;
 
-			if (minSizeAxis == 'x') {
-				context.arc(minSize / 2, maxSize / 2, minSize / 2 - 5, 0, 2 * Math.PI);
-			} else {
-				context.arc(maxSize / 2, minSize / 2, minSize / 2 - 5, 0, 2 * Math.PI);
-			}
+			context.arc(xStart, yStart, minSize / 2 - 5, 0, 2 * Math.PI);
 
 			context.stroke();
 			context.closePath();
@@ -82,13 +88,27 @@
 				context.strokeStyle = `#006000`;
 				context.beginPath();
 
-				context.moveTo(minSize / 2 + (maxSize - minSize) / 2, minSize / 2);
-				context.lineTo(
+				if (minSizeAxis == 'x') {
+					context.moveTo(xStart, yStart);
+				} else {
+					context.moveTo(yStart, xStart);
+				}
+
+				let msGoalX =
 					minSize / 2 +
-						(maxSize - minSize) / 2 +
-						Math.cos((now.getTime() / 1000 - 0.25) * Math.PI * 2) * (minSize / 2 - 5),
-					minSize / 2 + Math.sin((now.getTime() / 1000 - 0.25) * Math.PI * 2) * (minSize / 2 - 5)
-				);
+					(maxSize - minSize) / 2 +
+					Math.cos((now.getTime() / 1000 - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+				let msGoalY =
+					minSize / 2 + Math.sin((now.getTime() / 1000 - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+
+				if (minSizeAxis == 'x') {
+					let temp = 0;
+					temp = msGoalX;
+					msGoalX = msGoalY;
+					msGoalY = temp;
+				}
+
+				context.lineTo(msGoalX, msGoalY);
 
 				context.stroke();
 				context.closePath();
@@ -99,30 +119,35 @@
 			context.strokeStyle = `#dddddd`;
 			context.beginPath();
 
-			context.moveTo(minSize / 2 + (maxSize - minSize) / 2, minSize / 2);
-			context.lineTo(
+			let hoursX =
 				minSize / 2 +
-					(maxSize - minSize) / 2 +
-					Math.cos(
-						((now.getTime() -
-							new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) /
-							(12 * 60 * 60 * 1000) -
-							0.25) *
-							Math.PI *
-							2
-					) *
-						(minSize / 2 - 5),
+				(maxSize - minSize) / 2 +
+				Math.cos(
+					((now.getTime() - new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) /
+						(12 * 60 * 60 * 1000) -
+						0.25) *
+						Math.PI *
+						2
+				) *
+					(minSize / 2 - 5);
+			let hoursY =
 				minSize / 2 +
-					Math.sin(
-						((now.getTime() -
-							new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) /
-							(12 * 60 * 60 * 1000) -
-							0.25) *
-							Math.PI *
-							2
-					) *
-						(minSize / 2 - 5)
-			);
+				Math.sin(
+					((now.getTime() - new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) /
+						(12 * 60 * 60 * 1000) -
+						0.25) *
+						Math.PI *
+						2
+				) *
+					(minSize / 2 - 5);
+
+			if (minSizeAxis == 'x') {
+				context.moveTo(xStart, yStart);
+				context.lineTo(hoursY, hoursX);
+			} else {
+				context.moveTo(yStart, xStart);
+				context.lineTo(hoursX, hoursY);
+			}
 
 			context.stroke();
 			context.closePath();
@@ -132,14 +157,21 @@
 			context.strokeStyle = `#dddddd`;
 			context.beginPath();
 
-			context.moveTo(minSize / 2 + (maxSize - minSize) / 2, minSize / 2);
-			context.lineTo(
+			let minutesX =
 				minSize / 2 +
-					(maxSize - minSize) / 2 +
-					Math.cos((now.getTime() / (60 * 60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5),
+				(maxSize - minSize) / 2 +
+				Math.cos((now.getTime() / (60 * 60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+			let minutesY =
 				minSize / 2 +
-					Math.sin((now.getTime() / (60 * 60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5)
-			);
+				Math.sin((now.getTime() / (60 * 60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+
+			if (minSizeAxis == 'x') {
+				context.moveTo(xStart, yStart);
+				context.lineTo(minutesY, minutesX);
+			} else {
+				context.moveTo(yStart, xStart);
+				context.lineTo(minutesX, minutesY);
+			}
 
 			context.stroke();
 			context.closePath();
@@ -149,14 +181,20 @@
 			context.strokeStyle = `#800000`;
 			context.beginPath();
 
-			context.moveTo(minSize / 2 + (maxSize - minSize) / 2, minSize / 2);
-			context.lineTo(
+			let secondsX =
+				maxSize / 2 +
+				Math.cos((now.getTime() / (60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+			let secondsY =
 				minSize / 2 +
-					(maxSize - minSize) / 2 +
-					Math.cos((now.getTime() / (60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5),
-				minSize / 2 +
-					Math.sin((now.getTime() / (60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5)
-			);
+				Math.sin((now.getTime() / (60 * 1000) - 0.25) * Math.PI * 2) * (minSize / 2 - 5);
+
+			if (minSizeAxis == 'x') {
+				context.moveTo(xStart, yStart);
+				context.lineTo(secondsY, secondsX);
+			} else {
+				context.moveTo(yStart, xStart);
+				context.lineTo(secondsX, secondsY);
+			}
 
 			context.stroke();
 			context.closePath();
@@ -166,7 +204,7 @@
 			context.lineWidth = 10;
 			context.strokeStyle = `#ffffff`;
 
-			context.arc(maxSize / 2, minSize / 2, 10, 0, 2 * Math.PI);
+			context.arc(xStart, yStart, 10, 0, 2 * Math.PI);
 
 			context.fill();
 			context.closePath();
