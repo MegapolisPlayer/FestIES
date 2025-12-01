@@ -7,7 +7,7 @@ export const load = async (event) => {
 		event.cookies.set('languages', JSON.stringify(locales), { path: '/' });
 		event.cookies.set(
 			'playlist',
-			'https://www.youtube-nocookie.com/embed/videoseries?si=0Ck0t51FdMo_lDev&amp;list=PL5d1YE_8Im7NeG2G09qax1KZPClQbE1p7',
+			'https://www.youtube.com/embed/videoseries?si=9tV7jJed9H4lPkHr&amp;list=PL5d1YE_8Im7Nh_4krlRdBNBsGJFioTzl5',
 			{ path: '/' }
 		);
 		event.cookies.set('millisecond', 'false', { path: '/' });
