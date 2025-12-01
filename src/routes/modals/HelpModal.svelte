@@ -24,7 +24,7 @@
 
 		<Button
 			text="Close"
-			emoji={'close-circle'}
+			emoji="close-circle"
 			onclick={() => {
 				helpModal = false;
 			}}

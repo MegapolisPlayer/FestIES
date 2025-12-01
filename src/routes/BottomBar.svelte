@@ -64,7 +64,7 @@
 				helpModal = true;
 			}}
 			label="Help"
-			emoji={'question'}
+			emoji="question"
 			triggered={helpModal}
 		/>
 
@@ -73,7 +73,7 @@
 				settingsModal = true;
 			}}
 			label="Settings"
-			emoji={'settings-3'}
+			emoji="settings-3"
 			triggered={settingsModal}
 		/>
 
@@ -83,7 +83,7 @@
 			}}
 			label="Send feedback"
 			triggered={feedbackModal}
-			emoji={'feedback'}
+			emoji="feedback"
 		/>
 
 		<IconButton
@@ -91,7 +91,7 @@
 				changelogModal = true;
 			}}
 			label="Changelog"
-			emoji={'file-edit'}
+			emoji="file-edit"
 			triggered={changelogModal}
 		/>
 
@@ -100,7 +100,7 @@
 				authorModal = true;
 			}}
 			label="Credits"
-			emoji={'user-3'}
+			emoji="user-3"
 			triggered={authorModal}
 		/>
 	</div>

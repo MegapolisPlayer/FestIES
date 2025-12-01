@@ -13,7 +13,7 @@
 
 		<Button
 			text="Close"
-			emoji={'close-circle'}
+			emoji="close-circle"
 			onclick={() => {
 				authorModal = false;
 			}}

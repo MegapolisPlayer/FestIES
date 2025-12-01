@@ -16,7 +16,7 @@ export const actions = {
 			return fail(400, {});
 		}
 
-		let langs: string[] = [];
+		const langs: string[] = [];
 		for (let i = 0; i < locales.length; i++) {
 			if (formData.get('lang-' + locales[i])?.toString() === 'on') {
 				langs.push(locales[i]);

@@ -86,11 +86,11 @@
 					{/each}
 				</div>
 			</div>
-			<Button text="Set settings" emoji={'check-double'} type="submit" />
+			<Button text="Set settings" emoji="check-double" type="submit" />
 		</form>
 		<Button
 			text="Close"
-			emoji={'close-circle'}
+			emoji="close-circle"
 			onclick={() => {
 				settingsModal = false;
 			}}
