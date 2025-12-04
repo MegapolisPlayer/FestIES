@@ -71,6 +71,8 @@
 	};
 
 	onMount(async () => {
+		if(!journey) return;
+
 		if (!browser) return;
 
 		//TODO convert images to array
@@ -140,7 +142,7 @@
 		clearTimeout(eventInterval);
 	});
 
-	let { locale } = $props();
+	let { locale, journey } = $props();
 </script>
 
 <div

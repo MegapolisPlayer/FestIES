@@ -25,8 +25,8 @@ export const load = async (event) => {
 		background: event.cookies.get('background') as string,
 		languages: JSON.parse(event.cookies.get('languages') as string) as LanguageType[],
 		playlist: event.cookies.get('playlist') as string,
-		millisecond: (event.cookies.get('millisecond') as string) === 'true',
-		journey: (event.cookies.get('journey') as string) === 'true',
+		millisecond: (event.cookies.get('millisecond') as string) == 'true',
+		journey: (event.cookies.get('journey') as string) == 'true',
 		countdown: new Date(event.cookies.get('time') as string)
 	};
 };

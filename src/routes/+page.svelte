@@ -105,7 +105,9 @@
 				{/key}
 			</div>
 
-			<JourneyBar locale={currentLocale} />
+			{#key data.journey}
+				<JourneyBar locale={currentLocale} journey={data.journey} />
+			{/key}
 		</div>
 
 		<BottomBar

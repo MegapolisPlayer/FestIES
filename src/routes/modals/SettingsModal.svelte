@@ -82,7 +82,7 @@
 							type="checkbox"
 							class="checkbox"
 							name="millisecond"
-							checked={data.milliseconds == 'true'}
+							checked={data.millisecond}
 						/>
 						<label for="millisecond">Millisecond hand on clock</label>
 					</span>
@@ -93,7 +93,7 @@
 							type="checkbox"
 							class="checkbox"
 							name="journey"
-							checked={data.journey == 'true'}
+							checked={data.journey}
 						/>
 						<label for="journey">Events on bottom bar enabled</label>
 					</span>
