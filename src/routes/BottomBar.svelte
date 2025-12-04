@@ -36,23 +36,23 @@
 </script>
 
 {#if !clicked}
-	<div class="flex h-10! w-full shrink-0 grow-0"></div>
+	<div class="flex max-lg:h-15! lg:h-10! w-full shrink-0 grow-0"></div>
 {/if}
 
 {#key ready || clicked}
 	<div
 		class="
-    absolute bottom-0 z-50 flex h-10! w-full flex-row items-center gap-2 border-t-2 border-gray-800 bg-gray-500 p-2 text-2xl text-gray-800
+    absolute bottom-0 z-50 flex max-lg:h-15! lg:h-10! w-full flex-row items-center gap-2 border-t-2 border-gray-800 bg-gray-500 p-2 max-lg:text-3xl lg:text-2xl text-gray-800
     {!clicked ? 'opacity-100' : 'opacity-0'}
     "
 		transition:fly={{ duration: 250, opacity: 0, x: 0, y: 100 }}
 	>
 		<span class="flex grow flex-row gap-2" id="bottom">
-			<p class="text-lg font-bold">
+			<p class="max-lg:text-xl lg:text-lg font-bold">
 				{m.nameShort({}, { locale: currentLocale as LanguageType })}
 			</p>
 
-			<p class="text-lg">
+			<p class="max-lg:hidden text-lg">
 				{m.nameLong({}, { locale: currentLocale as LanguageType })}
 			</p>
 

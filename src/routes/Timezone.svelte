@@ -3,14 +3,13 @@
 	import type { LanguageType } from '$lib/types';
 	import { onDestroy, onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { timezonePointList } from '$lib';
+	import { timezoneList, timezonePointList, makeCountdown } from '$lib';
 
-	let { locale } = $props();
+	let { locale, target, now } = $props();
 
 	let canvas: HTMLCanvasElement | undefined = $state();
 	let context: CanvasRenderingContext2D | undefined = $state();
 	let backgroundImage: HTMLImageElement | undefined = $state();
-	let timezoneMapImage: HTMLImageElement | undefined = $state();
 
 	let sizeX = 0;
 	let sizeY = 0;
@@ -49,7 +48,8 @@
 				context.canvas.width = sizeX;
 				context.canvas.height = sizeY;
 				context.strokeStyle = `#ffffff`;
-				context.fillStyle = '#ffffff';
+				context.fillStyle = '#80808080';
+				context.font = "normal 20px serif";
 				context.globalAlpha = 1;
 				context.lineWidth = 2;
 			}
@@ -58,13 +58,40 @@
 		interval = setInterval(() => {
 			context?.drawImage(backgroundImage as HTMLImageElement, 0, 0, sizeX, sizeY);
 
+			let i = 0;
 			for (let pointList of timezonePointList) {
+				if (pointList.length == 0) {
+					i++;
+					continue;
+				}
+
+				//context.fillStyle = `rgb(0, ${Math.random()*127}, ${Math.random()*127}, 40)`;
+
 				context?.beginPath();
-				context?.moveTo((sizeX * (pointList[0].x - 2)) / 100, (sizeY * (pointList[0].y - 2)) / 100);
+				context?.moveTo((sizeX * pointList[0].x) / 100, (sizeY * pointList[0].y) / 100);
 				for (let point of pointList) {
-					context?.lineTo((sizeX * (point.x - 2)) / 100, ((point.y - 2) * sizeY) / 100);
+					context?.lineTo((sizeX * point.x) / 100, (point.y * sizeY) / 100);
 				}
 				context?.stroke();
+
+				let countdown = makeCountdown(
+					new Date(target.getTime() - (timezoneList[i].hour + now.getTimezoneOffset() / 60) * 3600000),
+					now,
+				);
+
+				if(countdown.total < 0) {
+					(context as CanvasRenderingContext2D).fillStyle = '#00800080';
+				}
+				else if(countdown.hours === 0 && countdown.days === 0) {
+					(context as CanvasRenderingContext2D).fillStyle = '#80800080';
+				}
+				else {
+					(context as CanvasRenderingContext2D).fillStyle = '#80808080';
+				}
+
+				context?.fill();
+
+				i++;
 			}
 			1;
 		}, 40);
@@ -75,10 +102,18 @@
 	});
 </script>
 
-<div class="flex max-h-full grow flex-col rounded-4xl bg-black/20 p-5">
-	<h2 class="text-2xl font-medium">
-		{m.timezoneMap({}, { locale: locale as LanguageType })}
-	</h2>
+<div class="flex max-h-full grow flex-col gap-2 rounded-4xl bg-black/20 p-5">
+	<div class="flex w-full items-center gap-2 max-lg:flex-col lg:flex-row">
+		<h2 class="font-medium text-nowrap max-lg:text-base lg:text-2xl">
+			{m.timezoneMap({}, { locale: locale as LanguageType })}
+		</h2>
+		<p class="text-center text-sm">
+			{m.thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones(
+				{},
+				{ locale: locale as LanguageType }
+			)}
+		</p>
+	</div>
 
 	<canvas id={value} class="h-full w-full grow rounded-4xl border-2 border-white"
 		>Canvas element not supported!</canvas

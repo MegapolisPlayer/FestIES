@@ -53,9 +53,9 @@
 </script>
 
 <span
-	class="flex min-h-6 w-full min-w-0! flex-row items-center gap-2 overflow-hidden! **:overflow-hidden! **:text-nowrap"
+	class="flex min-h-6 max-h-6 max-w-full w-full min-w-0! flex-row items-center gap-2 overflow-hidden! **:overflow-hidden **:text-nowrap"
 >
-	<span class="flex flex-row gap-0">
+	<span class="flex flex-row gap-0 overflow-none!">
 		<span class={!reverse && countdown.days > 0 ? '' : 'text-neutral-500'}>
 			{Math.abs(countdown.days).toFixed().padStart(2, '0')}:
 		</span><span
@@ -71,10 +71,10 @@
 		</span>
 	</span>
 
-	<span class="text-xl font-medium">
+	<span class="{auxCity.length > 0 ? "" : "text-ellipsis overflow-hidden!"} text-xl font-medium">
 		{mainCity}
 	</span>
-	<span class="text-ellipsis">
+	<span class="text-ellipsis overflow-hidden!">
 		{auxCity}
 	</span>
 </span>

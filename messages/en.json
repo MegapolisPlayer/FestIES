@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Merry Christmas and a Happy New Year!",
 	"languageName": "English",
 	"noMusicPlayerAvailable": "No music player available",
-	"playingHandelsMusicForRoyalFireworks": "Playing Handel's Music for the Royal Fireworks"
+	"playingHandelsMusicForRoyalFireworks": "Playing Handel's Music for the Royal Fireworks",
+	"timeUntilCountdownFinishes": "Time until countdown finishes",
+	"volumeControl": "Volume Control",
+	"theNewYearIsHere": "The New Year is here!",
+	"theCountdownHasEnded": "The countdown has ended!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "This map is only an approximation due to the complexity of timezones"
 }

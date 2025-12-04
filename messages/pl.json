@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Wesołych Świąt i Szczęśliwego Nowego Roku!",
 	"languageName": "Polski",
 	"noMusicPlayerAvailable": "Brak dostępnego odtwarzacza muzyki",
-	"playingHandelsMusicForRoyalFireworks": "Odtwarzanie muzyki Händla na królewskie fajerwerki"
+	"playingHandelsMusicForRoyalFireworks": "Odtwarzanie muzyki Händla na królewskie fajerwerki",
+	"timeUntilCountdownFinishes": "Czas do zakończenia odliczania",
+	"volumeControl": "Kontrola głośności",
+	"theNewYearIsHere": "Nowy Rok jest tutaj!",
+	"theCountdownHasEnded": "Odliczanie się zakończyło!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ta mapa jest tylko przybliżeniem ze względu na złożoność stref czasowych"
 }

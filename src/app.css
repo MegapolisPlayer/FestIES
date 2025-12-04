@@ -27,4 +27,8 @@
 	.checkbox {
 		@apply rounded-4xl text-white accent-gray-900 hover:accent-gray-700;
 	}
+
+	.range-input {
+		@apply bg-transparent;
+	}
 }

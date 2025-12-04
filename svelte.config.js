@@ -19,7 +19,8 @@ const config = {
 				'style-src': ['self', 'fonts.googleapis.com', 'martinbykov.eu', 'unsafe-inline'],
 				'frame-ancestors': ['none'],
 				'connect-src': ['self'],
-				'frame-src': ['*.cloudflare.com', 'www.youtube-nocookie.com', 'youtube-nocookie.com', 'youtube.com', 'www.youtube.com', 'consent.youtube.com']
+				'frame-src': ['*.cloudflare.com', 'www.youtube-nocookie.com', 'youtube-nocookie.com', 'youtube.com', 'www.youtube.com', 'consent.youtube.com'],
+				'media-src': ['self']
 			},
 			// must be specified with either the `report-uri` or `report-to` directives, or both
 			reportOnly: {

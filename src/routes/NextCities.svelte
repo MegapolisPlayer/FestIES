@@ -4,7 +4,7 @@
 	import { timezoneList } from '$lib';
 	import TimezoneItem from './items/TimezoneItem.svelte';
 
-	let { locale, now, target, clicked } = $props();
+	let { locale, now, target } = $props();
 
 	let timezones = $state(
 		timezoneList.filter((v) => {
@@ -16,7 +16,7 @@
 </script>
 
 <div
-	class="flex w-1/5 max-w-1/5 min-w-1/5 grow flex-col gap-4 overflow-scroll! rounded-4xl bg-black/20 p-5 **:overflow-scroll"
+	class="flex w-full grow flex-col gap-4 overflow-scroll! rounded-4xl bg-black/20 p-5 **:overflow-scroll"
 >
 	<h2 class="w-full shrink-0 text-center text-2xl font-medium">
 		{m.followingCities({}, { locale: locale as LanguageType })}

@@ -8,9 +8,12 @@ export const load = async (event) => {
 export const actions = {
 	settings: async (event) => {
 		const formData = await event.request.formData();
+	
+		const customTime = formData.get('hastime')?.toString() === 'on';
 
 		if (
 			!formData.has('bg') ||
+			(!formData.has('time') && customTime) ||
 			(!formData.has('playlist') && formData.get('hasplaylist')?.toString() === 'on')
 		) {
 			return fail(400, {});
@@ -36,5 +39,15 @@ export const actions = {
 		event.cookies.set('journey', String((formData.get('journey')?.toString() as string) === 'on'), {
 			path: '/'
 		});
-	}
+
+		let time = "";
+		if(customTime) {
+			time = new Date(formData.get("time")?.toString() as string).toLocaleString();
+		}
+		else {
+			time = new Date(new Date().getFullYear()+1, 0, 1, 0, 0, 0, 0).toLocaleString();
+		}
+
+		event.cookies.set('time', time, { path: '/' });
+	},
 };

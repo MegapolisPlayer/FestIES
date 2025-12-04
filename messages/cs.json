@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Veselé Vánoce a šťastný Nový rok!",
 	"languageName": "Čeština",
 	"noMusicPlayerAvailable": "Hudební přehrávač není k dispozici",
-	"playingHandelsMusicForRoyalFireworks": "Přehrává se Händelova hudba pro královské ohňostroje"
+	"playingHandelsMusicForRoyalFireworks": "Přehrává se Händelova hudba pro královské ohňostroje",
+	"timeUntilCountdownFinishes": "Čas do konce odpočítávání",
+	"volumeControl": "Ovládání hlasitosti",
+	"theNewYearIsHere": "Nový rok je tady!",
+	"theCountdownHasEnded": "Odpočítávání skončilo!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Tato mapa je pouze přibližná kvůli složitosti časových pásem"
 }

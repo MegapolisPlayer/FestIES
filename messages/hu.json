@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Kellemes Karácsonyt és Boldog Új Évet!",
 	"languageName": "Magyar",
 	"noMusicPlayerAvailable": "Nincs elérhető zenelejátszó",
-	"playingHandelsMusicForRoyalFireworks": "Handel királyi tűzijáték zenéjének lejátszása"
+	"playingHandelsMusicForRoyalFireworks": "Handel királyi tűzijáték zenéjének lejátszása",
+	"timeUntilCountdownFinishes": "Idő a visszaszámlálás végéig",
+	"volumeControl": "Hangerőszabályzó",
+	"theNewYearIsHere": "Itt az új év!",
+	"theCountdownHasEnded": "A visszaszámlálás véget ért!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ez a térkép csak egy közelítés az időzónák összetettsége miatt"
 }

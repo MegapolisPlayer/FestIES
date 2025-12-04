@@ -1,5 +1,6 @@
 import { m } from './paraglide/messages';
 import type { CountdownType, LanguageType, PointType, TimezoneType } from './types';
+import { error } from '@sveltejs/kit';
 
 export const writeDays = (days: number, locale: string) => {
 	if (days == 0) return m.day0({}, { locale: locale as LanguageType });
@@ -218,13 +219,13 @@ export const timezoneList: TimezoneType[] = [
 		['Yerevan', 'Samara', 'Tolyatti', 'Abu Dhabi', 'Muscat']
 	),
 	makeTimezone(4.5, ['Kabul'], ['Kandahar', 'Mazari Sharif']),
-	//2 hyderabads... India and Pakistan (they love each other)
+	//2 hyderabads... India (+5.5) and Pakistan (+5) (they love each other)
 	makeTimezone(
 		5,
 		['Almaty', 'Islamabad', 'Tashkent'],
 		['Astana', 'Faisalabad', 'Hyderabad', 'Chelyabinsk', 'Yekaterinburg', 'Namangan']
 	),
-	//sri lanka colombo
+	//sri lanka colombo and india
 	makeTimezone(5.5, ['New Delhi', 'Colombo'], ['Hyderabad', 'Mumbai', 'Kolkata', 'Ahmedabad']),
 	makeTimezone(5.75, ['Kathmandu'], ['Biratnagar']),
 	makeTimezone(6, ['Dhaka', 'Omsk'], ['Chittagong', 'Thimphu', 'Bishkek']),
@@ -275,34 +276,514 @@ export const makeTimezonePoint = (x: number, y: number): PointType => {
 };
 
 //for canvas
+//IMPORTANT: width should be 4 1/6, is 4 tho
+//we fix by making some 5 wide i guess
 export const timezonePointList = [
+	//-12
 	[
-		makeTimezonePoint(4, 0),
-		makeTimezonePoint(4, 60),
-		makeTimezonePoint(8, 60),
-		makeTimezonePoint(4, 100)
+		makeTimezonePoint(0, 0),
+		makeTimezonePoint(0, 8),
+		makeTimezonePoint(2, 10),
+		makeTimezonePoint(2, 15),
+		makeTimezonePoint(0, 17),
+		makeTimezonePoint(0, 50),
+		makeTimezonePoint(2, 50),
+		makeTimezonePoint(2, 46),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(2, 54),
+		makeTimezonePoint(2, 85),
+		makeTimezonePoint(0, 90),
+		makeTimezonePoint(0, 100),
+		makeTimezonePoint(2, 100),
+		makeTimezonePoint(2, 85),
+		makeTimezonePoint(2, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(2, 46),
+		makeTimezonePoint(2, 15),
+		makeTimezonePoint(2, 0),
 	],
-	[makeTimezonePoint((2 * 100) / 24, 0), makeTimezonePoint((2 * 100) / 24, 100)],
-	[makeTimezonePoint((3 * 100) / 24, 0), makeTimezonePoint((3 * 100) / 24, 100)],
-	[makeTimezonePoint((4 * 100) / 24, 0), makeTimezonePoint((4 * 100) / 24, 100)],
-	[makeTimezonePoint((5 * 100) / 24, 0), makeTimezonePoint((5 * 100) / 24, 100)],
-	[makeTimezonePoint((6 * 100) / 24, 0), makeTimezonePoint((6 * 100) / 24, 100)],
-	[makeTimezonePoint((7 * 100) / 24, 0), makeTimezonePoint((7 * 100) / 24, 100)],
-	[makeTimezonePoint((8 * 100) / 24, 0), makeTimezonePoint((8 * 100) / 24, 100)],
-	[makeTimezonePoint((9 * 100) / 24, 0), makeTimezonePoint((9 * 100) / 24, 100)],
-	[makeTimezonePoint((10 * 100) / 24, 0), makeTimezonePoint((10 * 100) / 24, 100)],
-	[makeTimezonePoint((11 * 100) / 24, 0), makeTimezonePoint((11 * 100) / 24, 100)],
-	[makeTimezonePoint((12 * 100) / 24, 0), makeTimezonePoint((12 * 100) / 24, 100)],
-	[makeTimezonePoint((13 * 100) / 24, 0), makeTimezonePoint((13 * 100) / 24, 100)],
-	[makeTimezonePoint((14 * 100) / 24, 0), makeTimezonePoint((14 * 100) / 24, 100)],
-	[makeTimezonePoint((15 * 100) / 24, 0), makeTimezonePoint((15 * 100) / 24, 100)],
-	[makeTimezonePoint((16 * 100) / 24, 0), makeTimezonePoint((16 * 100) / 24, 100)],
-	[makeTimezonePoint((17 * 100) / 24, 0), makeTimezonePoint((17 * 100) / 24, 100)],
-	[makeTimezonePoint((18 * 100) / 24, 0), makeTimezonePoint((18 * 100) / 24, 100)],
-	[makeTimezonePoint((19 * 100) / 24, 0), makeTimezonePoint((19 * 100) / 24, 100)],
-	[makeTimezonePoint((20 * 100) / 24, 0), makeTimezonePoint((20 * 100) / 24, 100)],
-	[makeTimezonePoint((21 * 100) / 24, 0), makeTimezonePoint((21 * 100) / 24, 100)],
-	[makeTimezonePoint((22 * 100) / 24, 0), makeTimezonePoint((22 * 100) / 24, 100)],
-	[makeTimezonePoint((23 * 100) / 24, 0), makeTimezonePoint((23 * 100) / 24, 100)],
-	[makeTimezonePoint((24 * 100) / 24, 0), makeTimezonePoint((24 * 100) / 24, 100)]
-];
+	//-11
+	[
+		makeTimezonePoint(6, 0),
+		makeTimezonePoint(6, 10),
+		makeTimezonePoint(4, 12),
+		makeTimezonePoint(4, 17),
+		makeTimezonePoint(6, 18),
+		makeTimezonePoint(6, 46),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(6, 52.5),
+		makeTimezonePoint(6, 100),
+		makeTimezonePoint(2, 100),
+		makeTimezonePoint(2, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(2, 46),
+		makeTimezonePoint(2, 0),
+	],
+	//-10
+	[
+		makeTimezonePoint(10, 0),
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(6, 10),
+		makeTimezonePoint(4, 12),
+		makeTimezonePoint(4, 17),
+		makeTimezonePoint(6, 18),
+		makeTimezonePoint(6, 46),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(6, 52.5),
+		makeTimezonePoint(6, 100),
+		makeTimezonePoint(10, 100),
+		makeTimezonePoint(10, 17),
+		makeTimezonePoint(6, 18),
+		makeTimezonePoint(4, 17),
+		makeTimezonePoint(4, 12),
+		makeTimezonePoint(6, 10),
+		makeTimezonePoint(6, 0),
+	],
+	[], //-9.5
+	//-9
+	[
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(10, 17),
+		makeTimezonePoint(6, 18),
+		makeTimezonePoint(4, 17),
+		makeTimezonePoint(4, 12),
+		makeTimezonePoint(6, 10),
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(10, 100),
+		makeTimezonePoint(14, 100),
+		makeTimezonePoint(14, 22),
+		makeTimezonePoint(10, 17),
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(14, 11),
+		makeTimezonePoint(14, 0),
+		makeTimezonePoint(10, 0),
+		makeTimezonePoint(10, 11),
+	],
+	//-8
+	[
+		makeTimezonePoint(14, 100),
+		makeTimezonePoint(14, 22),
+		makeTimezonePoint(10, 17),
+		makeTimezonePoint(10, 16),
+
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(18, 11),
+		makeTimezonePoint(18, 0),
+		makeTimezonePoint(14, 0),
+		makeTimezonePoint(14, 11),
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(10, 16),
+
+		makeTimezonePoint(13, 16),
+		makeTimezonePoint(18, 25),
+		makeTimezonePoint(18, 100),
+		makeTimezonePoint(14, 100),
+	],
+	//-7
+	[
+		makeTimezonePoint(18, 100),
+		makeTimezonePoint(18, 25),
+		makeTimezonePoint(13, 16),
+		makeTimezonePoint(10, 16),
+		makeTimezonePoint(10, 11),
+		makeTimezonePoint(18, 11),
+		makeTimezonePoint(18, 0),
+		makeTimezonePoint(22, 0),
+		makeTimezonePoint(22, 33),
+		makeTimezonePoint(20, 35),
+		makeTimezonePoint(20, 39),
+		makeTimezonePoint(22, 41),
+		makeTimezonePoint(22, 100),
+	],
+	//-6
+	[
+		makeTimezonePoint(22, 0),
+		makeTimezonePoint(22, 33),
+		makeTimezonePoint(20, 35),
+		makeTimezonePoint(20, 35),
+		makeTimezonePoint(20, 39),
+		makeTimezonePoint(22, 41),
+		makeTimezonePoint(22, 100),
+		makeTimezonePoint(26, 100),
+		makeTimezonePoint(26, 0),
+	],
+	//-5
+	[
+		makeTimezonePoint(26, 0),
+		makeTimezonePoint(26, 100),
+		makeTimezonePoint(30, 100),
+		makeTimezonePoint(30, 0),
+	],
+	//-4
+	[
+		makeTimezonePoint(30, 100),
+		makeTimezonePoint(34, 100),
+		makeTimezonePoint(34, 70),
+		makeTimezonePoint(30, 85),
+		makeTimezonePoint(30, 63),
+		makeTimezonePoint(34, 63),
+		makeTimezonePoint(34, 10),
+		makeTimezonePoint(30, 5),
+		makeTimezonePoint(34, 3),
+		makeTimezonePoint(34, 0),
+		makeTimezonePoint(30, 0),
+	],
+	[], //-3.5
+	//-3
+	[
+		makeTimezonePoint(34, 0),
+		makeTimezonePoint(34, 3),
+		makeTimezonePoint(30, 5),
+		makeTimezonePoint(34, 10),
+		makeTimezonePoint(34, 63),
+		makeTimezonePoint(30, 63),
+		makeTimezonePoint(30, 85),
+		makeTimezonePoint(34, 70),
+		makeTimezonePoint(34, 100),
+		makeTimezonePoint(38, 100),
+		makeTimezonePoint(38, 65),
+		makeTimezonePoint(40, 53),
+		makeTimezonePoint(38, 50),
+		makeTimezonePoint(38, 17),
+		makeTimezonePoint(34, 10),
+		makeTimezonePoint(30, 5),
+		makeTimezonePoint(34, 3),
+		makeTimezonePoint(34, 0),
+		makeTimezonePoint(38, 0),
+		makeTimezonePoint(38, 3),
+		makeTimezonePoint(34, 3),
+	],
+	//-2
+	[
+		makeTimezonePoint(42, 0),
+		makeTimezonePoint(46, 5),
+		makeTimezonePoint(44, 10),
+		makeTimezonePoint(42, 12),
+		makeTimezonePoint(42, 100),
+		makeTimezonePoint(38, 100),
+		makeTimezonePoint(38, 65),
+		makeTimezonePoint(40, 53),
+		makeTimezonePoint(38, 50),
+		makeTimezonePoint(38, 17),
+		makeTimezonePoint(34, 10),
+		makeTimezonePoint(30, 5),
+		makeTimezonePoint(34, 3),
+		makeTimezonePoint(38, 3),
+		makeTimezonePoint(38, 0),
+	],
+	//-1
+	[
+		makeTimezonePoint(42, 0),
+		makeTimezonePoint(46, 0),
+		makeTimezonePoint(46, 100),
+		makeTimezonePoint(42, 100),
+		makeTimezonePoint(42, 12),
+		makeTimezonePoint(44, 10),
+		makeTimezonePoint(46, 5),
+	],
+	//0
+	[
+		makeTimezonePoint(46, 0),
+		makeTimezonePoint(46, 100),
+		makeTimezonePoint(50, 100),
+		makeTimezonePoint(50, 40),
+		makeTimezonePoint(48, 38),
+		makeTimezonePoint(46, 39),
+		makeTimezonePoint(46, 30),
+		makeTimezonePoint(48, 30),
+		makeTimezonePoint(48, 23),
+		makeTimezonePoint(50, 22),
+		makeTimezonePoint(50, 0),
+	],
+	//1
+	[
+		makeTimezonePoint(50, 100),
+		makeTimezonePoint(54 + 1, 100),
+		makeTimezonePoint(54 + 1, 63),
+		makeTimezonePoint(56 + 1, 63),
+		makeTimezonePoint(56 + 1, 38),
+		makeTimezonePoint(54 + 1, 38),
+		makeTimezonePoint(54 + 1, 30),
+		makeTimezonePoint(56 + 1, 30),
+		makeTimezonePoint(56 + 1, 21),
+		makeTimezonePoint(55 + 1, 20),
+		makeTimezonePoint(58 + 1, 6),
+		makeTimezonePoint(55, 0),
+		makeTimezonePoint(50, 0),
+		makeTimezonePoint(50, 22),
+		makeTimezonePoint(48, 23),
+		makeTimezonePoint(48, 30),
+		makeTimezonePoint(46, 30),
+		makeTimezonePoint(46, 39),
+		makeTimezonePoint(48, 38),
+		makeTimezonePoint(50, 40),
+		makeTimezonePoint(50, 100),
+	],
+	//2
+	[
+		makeTimezonePoint(54 + 1, 38),
+		makeTimezonePoint(54 + 1, 30),
+		makeTimezonePoint(56 + 1, 30),
+		makeTimezonePoint(56 + 1, 21),
+		makeTimezonePoint(55 + 1, 20),
+		makeTimezonePoint(58 + 1, 6),
+		makeTimezonePoint(54 + 1, 0),
+		makeTimezonePoint(58 + 2, 0),
+		makeTimezonePoint(60, 35),
+		makeTimezonePoint(62 + 1, 42),
+		makeTimezonePoint(58 + 1, 50),
+		makeTimezonePoint(62 + 2, 54),
+		makeTimezonePoint(62 + 2, 60),
+		makeTimezonePoint(58 + 3, 75),
+		makeTimezonePoint(58 + 3, 100),
+		makeTimezonePoint(54 + 1, 100),
+		makeTimezonePoint(54 + 1, 63),
+		makeTimezonePoint(56 + 1, 63),
+		makeTimezonePoint(56 + 1, 38),
+		makeTimezonePoint(54 + 1, 38),
+	],
+	//3
+	[
+		makeTimezonePoint(58 + 2, 0),
+		makeTimezonePoint(60, 35),
+		makeTimezonePoint(62 + 1, 42),
+		makeTimezonePoint(58 + 1, 50),
+		makeTimezonePoint(62 + 2, 54),
+		makeTimezonePoint(62 + 2, 60),
+		makeTimezonePoint(61, 75),
+		makeTimezonePoint(61, 100),
+		makeTimezonePoint(66, 100),
+		makeTimezonePoint(66, 37),
+
+		makeTimezonePoint(63, 28),
+		makeTimezonePoint(66, 28),
+
+		makeTimezonePoint(70, 0),
+	],
+	[], //3.14
+	//3.5 (Iran)
+	[
+		makeTimezonePoint(63, 28),
+		makeTimezonePoint(66, 28),
+		makeTimezonePoint(68, 29),
+		makeTimezonePoint(68, 33),
+		makeTimezonePoint(69, 37),
+		makeTimezonePoint(67, 37),
+		makeTimezonePoint(66, 37),
+	],
+	[], //4
+	[], //4.5
+	//5
+	[
+		makeTimezonePoint(66, 100),
+		makeTimezonePoint(71, 100),
+		makeTimezonePoint(71, 45),
+		makeTimezonePoint(69, 35),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(72, 0),
+		makeTimezonePoint(70, 0),
+		makeTimezonePoint(66, 28),
+		makeTimezonePoint(68, 29),
+		makeTimezonePoint(68, 33),
+		makeTimezonePoint(69, 37),
+		makeTimezonePoint(66, 37),
+	],
+	//5.5 (India)
+	[
+		makeTimezonePoint(69, 35),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(76, 34),
+		makeTimezonePoint(76, 38),
+		makeTimezonePoint(72, 48),
+		makeTimezonePoint(71, 45),
+	],
+	[], //5.75
+	//6
+	[
+		makeTimezonePoint(71, 100),
+		makeTimezonePoint(71, 45),
+		makeTimezonePoint(72, 48),
+		makeTimezonePoint(76, 38),
+
+		makeTimezonePoint(76, 34),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(76, 28),
+
+		makeTimezonePoint(76, 0),
+		makeTimezonePoint(72, 0),
+
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(76, 34),
+
+		makeTimezonePoint(76, 100)
+	],
+	[], //6.5
+	//7
+	[
+		makeTimezonePoint(76, 100),
+		makeTimezonePoint(82, 100),
+		makeTimezonePoint(82, 42),
+		makeTimezonePoint(80, 40),
+		makeTimezonePoint(76, 38),
+
+		makeTimezonePoint(76, 34),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(76, 28),
+		makeTimezonePoint(76, 24),
+		makeTimezonePoint(78, 20),
+
+		makeTimezonePoint(78, 5),
+
+		makeTimezonePoint(82, 5),
+		makeTimezonePoint(82, 0),
+		makeTimezonePoint(76, 0),
+
+		makeTimezonePoint(76, 24),
+		makeTimezonePoint(76, 28),
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(76, 34),
+		makeTimezonePoint(76, 38),
+		makeTimezonePoint(76, 100),
+		
+	],
+	//8
+	[
+		makeTimezonePoint(82, 100),
+		makeTimezonePoint(86, 100),
+		makeTimezonePoint(86, 40),
+		makeTimezonePoint(84, 28),
+		makeTimezonePoint(86, 26),
+		makeTimezonePoint(86, 0),
+		makeTimezonePoint(82, 0),
+		makeTimezonePoint(82, 9),
+		makeTimezonePoint(86, 10),
+		makeTimezonePoint(86, 26),
+		makeTimezonePoint(84, 22),
+		makeTimezonePoint(82, 26),
+		makeTimezonePoint(80, 26),
+		makeTimezonePoint(80, 24),
+		makeTimezonePoint(82, 20),
+		makeTimezonePoint(80, 18),
+		makeTimezonePoint(78, 20),
+		makeTimezonePoint(76, 24),
+		makeTimezonePoint(76, 28),
+		makeTimezonePoint(72, 26),
+		makeTimezonePoint(70, 30),
+		makeTimezonePoint(72, 34),
+		makeTimezonePoint(76, 34),
+		makeTimezonePoint(76, 38),
+		makeTimezonePoint(80, 40),
+		makeTimezonePoint(82, 42),
+		makeTimezonePoint(82, 100),
+	],
+	[], //8.75
+	//9
+	[
+		makeTimezonePoint(86, 0),
+		makeTimezonePoint(86, 10),
+		makeTimezonePoint(82, 9),
+		makeTimezonePoint(82, 5),
+		makeTimezonePoint(78, 5),
+		makeTimezonePoint(78, 20),
+		makeTimezonePoint(80, 18),
+		makeTimezonePoint(82, 20),
+		makeTimezonePoint(80, 24),
+		makeTimezonePoint(80, 26),
+		makeTimezonePoint(82, 26),
+		makeTimezonePoint(84, 22),
+		makeTimezonePoint(86, 26),
+		makeTimezonePoint(86, 10),
+		makeTimezonePoint(86, 26),
+		makeTimezonePoint(84, 28),
+		makeTimezonePoint(86, 40),
+		makeTimezonePoint(86, 100),
+		makeTimezonePoint(90, 100),
+		makeTimezonePoint(90, 0),
+	],
+	[], //9.5
+	//10
+	[
+		makeTimezonePoint(90, 100),
+		makeTimezonePoint(90, 0),
+		makeTimezonePoint(94, 0),
+		makeTimezonePoint(94, 100),
+	],
+	[],	//10.5
+	//11
+	[
+		makeTimezonePoint(94, 100),
+		makeTimezonePoint(94, 0),
+		makeTimezonePoint(98, 0),
+		makeTimezonePoint(98, 100),
+	],
+	//12
+	[
+		makeTimezonePoint(98, 100),
+		makeTimezonePoint(98, 0),
+		makeTimezonePoint(100, 0),
+		makeTimezonePoint(100, 100),
+
+		//second part
+		makeTimezonePoint(0, 100),
+		makeTimezonePoint(0, 90),
+		makeTimezonePoint(2, 85),
+		makeTimezonePoint(2, 50),
+		makeTimezonePoint(0, 50),
+		makeTimezonePoint(0, 17),
+		makeTimezonePoint(2, 15),
+		makeTimezonePoint(2, 10),
+		makeTimezonePoint(0, 8),
+		makeTimezonePoint(0, 100),
+	],
+	//13
+	[
+		makeTimezonePoint(2, 54),
+		makeTimezonePoint(6, 52.5),
+		makeTimezonePoint(6, 46),
+		makeTimezonePoint(2, 46),
+		makeTimezonePoint(2, 54),
+	],
+	[], //13.75
+	//14
+	[
+		makeTimezonePoint(6, 46),
+		makeTimezonePoint(8, 46),
+		makeTimezonePoint(10, 52),
+		makeTimezonePoint(8, 54),
+		makeTimezonePoint(7, 52),
+		makeTimezonePoint(6, 52.5),
+	],
+].reverse(); //we do same with timezoneList
+
+export const dateToString = (d: Date): string => {
+	return new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split(':').splice(0, 2).join(':');
+};
+
+if(timezoneList.length !== timezonePointList.length) {
+	throw error(500, `Assertion failed ${timezoneList.length} ${timezonePointList.length}`);
+}

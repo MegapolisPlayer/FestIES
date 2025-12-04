@@ -2,10 +2,8 @@
 	import BottomBar from './BottomBar.svelte';
 	import Countdown from './Countdown.svelte';
 	import { onDestroy, onMount } from 'svelte';
-	import { locales } from '$lib/paraglide/runtime';
 	import NextCities from './NextCities.svelte';
 	import PrevCities from './PrevCities.svelte';
-	import type { LanguageType } from '$lib/types';
 	import MusicPlayer from './MusicPlayer.svelte';
 	import Timezone from './Timezone.svelte';
 	import AnalogClock from './AnalogClock.svelte';
@@ -30,8 +28,7 @@
 
 	let interval: NodeJS.Timeout | undefined = $state(undefined);
 	let now = $state(new Date());
-	let target = $state(new Date(2026, 0, 1, 0, 0, 0, 0));
-	//let target = $state(new Date(2025, 11, 1, 0, 0, 0, 0)); //DEBUG
+	let target = $derived(data.countdown);
 
 	const updateLocale = () => {
 		if (data.languages.length == 0) {
@@ -61,55 +58,61 @@
 	let clicked = $state(false);
 </script>
 
-<div
-	class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-col gap-0 overflow-hidden **:overflow-hidden"
->
-	<div class="flex w-full grow flex-col gap-6">
-		<div class="flex grow-5 flex-row gap-6 p-5 pb-0!">
-			{#key clicked}
-				<PrevCities {target} {now} locale={currentLocale} {clicked} />
-			{/key}
+{#key data.countdown}
+	<div
+		class="relative flex h-screen max-h-screen min-h-screen w-full grow flex-col gap-0 overflow-hidden **:overflow-hidden"
+	>
+		<div class="flex w-full grow flex-col max-lg:gap-2 lg:gap-6">
+			<div class="flex grow-5 flex-row max-lg:gap-2 lg:gap-6 p-5 pb-0!">
+				{#key clicked}
+					<span class="flex w-1/5 max-w-1/5 min-w-1/5 grow flex-col max-2xl:hidden">
+						<PrevCities {target} {now} locale={currentLocale} />
+					</span>
+				{/key}
 
-			<div class="flex grow flex-col items-center justify-center gap-6 overflow-hidden">
-				<Countdown {now} {target} locale={currentLocale} isNewYear={now > target} />
+				<div class="flex grow flex-col items-center justify-center  max-lg:gap-2 lg:gap-6 overflow-hidden">
+					<Countdown {now} {target} locale={currentLocale} isDone={now > target} />
 
-				<div class="flex w-full grow flex-row gap-6 overflow-hidden">
-					{#key clicked}
-						<Timezone locale={currentLocale} />
-					{/key}
-
-					<div class="flex max-w-1/4 min-w-1/4 grow flex-col gap-6 overflow-hidden">
+					<div class="flex w-full grow max-lg:flex-col lg:flex-row max-lg:gap-2 lg:gap-6 overflow-hidden">
 						{#key clicked}
-							<AnalogClock locale={currentLocale} {now} ms={data.millisecond} />
+							<Timezone locale={currentLocale} {target} {now} />
 						{/key}
 
-						<MusicPlayer
-							link={data.playlist}
-							locale={currentLocale}
-							switchedToHandel={now > target}
-						/>
+						<div class="flex max-lg:w-full lg:max-w-1/4 lg:min-w-1/4 grow flex-col  max-lg:gap-2 lg:gap-6 overflow-hidden">
+							{#key clicked}
+								<AnalogClock locale={currentLocale} {now} ms={data.millisecond} />
+							{/key}
+
+							<MusicPlayer
+								link={data.playlist}
+								locale={currentLocale}
+								switchedToHandel={now > target}
+							/>
+						</div>
 					</div>
 				</div>
+
+				{#key clicked}
+					<span class="flex w-1/5 max-w-1/5 min-w-1/5 grow flex-col max-2xl:hidden">
+						<NextCities {target} {now} locale={currentLocale} />
+					</span>
+				{/key}
 			</div>
 
-			{#key clicked}
-				<NextCities {target} {now} locale={currentLocale} {clicked} />
-			{/key}
+			<JourneyBar locale={currentLocale} />
 		</div>
 
-		<JourneyBar locale={currentLocale} />
+		<BottomBar
+			{currentLocale}
+			bind:settingsModal
+			bind:feedbackModal
+			bind:authorModal
+			bind:helpModal
+			bind:changelogModal
+			bind:clicked
+		/>
 	</div>
-
-	<BottomBar
-		{currentLocale}
-		bind:settingsModal
-		bind:feedbackModal
-		bind:authorModal
-		bind:helpModal
-		bind:changelogModal
-		bind:clicked
-	/>
-</div>
+{/key}
 
 <SettingsModal bind:settingsModal {data} />
 

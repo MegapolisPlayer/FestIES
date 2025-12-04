@@ -29,11 +29,11 @@
 			class="h-screen max-h-screen min-h-screen w-screen max-w-screen min-w-screen
 		backdrop:bg-gray-500/50"
 		>
-			<div class="flex h-screen w-full grow flex-col items-center justify-center">
+			<div class="flex h-screen w-full grow flex-col items-center lg:justify-center">
 				<div
 					bind:this={clickable}
 					class="
-				{cssClass ? cssClass : 'bg-gray-500!'} mt-5 mb-5 max-w-1/3 rounded-lg p-5 text-left
+				{cssClass ? cssClass : 'bg-gray-500!'} mt-5 mb-5 max-lg:max-w-9/10 max-lg:w-9/10 lg:max-w-1/3 rounded-lg p-5 text-left
 			"
 				>
 					{@render children?.()}

@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Frohe Weihnachten und ein schönes neues Jahr!",
 	"languageName": "Deutsch",
 	"noMusicPlayerAvailable": "Kein Musikspieler verfügbar",
-	"playingHandelsMusicForRoyalFireworks": "Spielt Händels Musik für königliches Feuerwerk"
+	"playingHandelsMusicForRoyalFireworks": "Spielt Händels Musik für königliches Feuerwerk",
+	"timeUntilCountdownFinishes": "Zeit bis zum Ende des Countdowns",
+	"volumeControl": "Lautstärkeregelung",
+	"theNewYearIsHere": "Das neue Jahr ist da!",
+	"theCountdownHasEnded": "Der Countdown ist beendet!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Diese Karte ist nur eine Annäherung aufgrund der Komplexität der Zeitzonen"
 }

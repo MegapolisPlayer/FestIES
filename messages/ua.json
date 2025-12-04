@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "З Різдвом та з Новим роком!",
 	"languageName": "Українська",
 	"noMusicPlayerAvailable": "Музичний плеєр недоступний",
-	"playingHandelsMusicForRoyalFireworks": "Відтворення музики Генделя для королівського феєрверку"
+	"playingHandelsMusicForRoyalFireworks": "Відтворення музики Генделя для королівського феєрверку",
+	"timeUntilCountdownFinishes": "Час до завершення зворотного відліку",
+	"volumeControl": "Регулювання гучності",
+	"theNewYearIsHere": "Новий рік настав!",
+	"theCountdownHasEnded": "Зворотний відлік завершено!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ця карта є лише наближенням через складність часових поясів"
 }

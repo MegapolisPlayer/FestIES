@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "Joyeux Noël et bonne année !",
 	"languageName": "Français",
 	"noMusicPlayerAvailable": "Aucun lecteur de musique disponible",
-	"playingHandelsMusicForRoyalFireworks": "Lecture de la musique de Handel pour les feux d'artifice royaux"
+	"playingHandelsMusicForRoyalFireworks": "Lecture de la musique de Handel pour les feux d'artifice royaux",
+	"timeUntilCountdownFinishes": "Temps jusqu'à la fin du compte à rebours",
+	"volumeControl": "Contrôle du volume",
+	"theNewYearIsHere": "La nouvelle année est arrivée !",
+	"theCountdownHasEnded": "Le compte à rebours est terminé !",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Cette carte n'est qu'une approximation en raison de la complexité des fuseaux horaires"
 }

@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "С Рождеством и с Новым годом!",
 	"languageName": "Русский",
 	"noMusicPlayerAvailable": "Музыкальный плеер недоступен",
-	"playingHandelsMusicForRoyalFireworks": "Воспроизведение музыки Генделя для королевского фейерверка"
+	"playingHandelsMusicForRoyalFireworks": "Воспроизведение музыки Генделя для королевского фейерверка",
+	"timeUntilCountdownFinishes": "Время до окончания обратного отсчета",
+	"volumeControl": "Регулировка громкости",
+	"theNewYearIsHere": "Новый год наступил!",
+	"theCountdownHasEnded": "Обратный отсчет завершен!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Эта карта является лишь приближением из-за сложности часовых поясов"
 }

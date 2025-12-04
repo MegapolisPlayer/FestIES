@@ -33,5 +33,10 @@
 	"merryChristmasAndAHappyNewYearExclamation": "¡Feliz Navidad y un próspero Año Nuevo!",
 	"languageName": "Español",
 	"noMusicPlayerAvailable": "No hay reproductor de música disponible",
-	"playingHandelsMusicForRoyalFireworks": "Reproduciendo la música de Handel para los fuegos artificiales reales"
+	"playingHandelsMusicForRoyalFireworks": "Reproduciendo la música de Handel para los fuegos artificiales reales",
+	"timeUntilCountdownFinishes": "Tiempo hasta que termine la cuenta regresiva",
+	"volumeControl": "Control de volumen",
+	"theNewYearIsHere": "¡El Año Nuevo está aquí!",
+	"theCountdownHasEnded": "¡La cuenta regresiva ha terminado!",
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Este mapa es solo una aproximación debido a la complejidad de las zonas horarias"
 }
