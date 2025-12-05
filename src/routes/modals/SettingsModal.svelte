@@ -17,11 +17,20 @@
 		<form
 			class="flex grow flex-col gap-2"
 			use:enhance={async (event) => {
-				let time = event.formData.get("time") as string;
-				event.formData.set("time", new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60*1000).toISOString());
+				let time = event.formData.get('time') as string;
+				event.formData.set(
+					'time',
+					new Date(
+						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
+					).toISOString()
+				);
 				console.log(time);
 				console.log(new Date().getTimezoneOffset());
-				console.log(new Date(new Date(time).getTime() - new Date().getTimezoneOffset()*60*1000).toISOString());
+				console.log(
+					new Date(
+						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
+					).toISOString()
+				);
 				return async ({ update }) => {
 					await update({ reset: false, invalidateAll: true });
 				};

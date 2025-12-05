@@ -780,11 +780,7 @@ export const timezonePointList = [
 ].reverse(); //we do same with timezoneList
 
 export const dateToString = (d: Date): string => {
-	return d
-		.toISOString()
-		.split(':')
-		.splice(0, 2)
-		.join(':');
+	return d.toISOString().split(':').splice(0, 2).join(':');
 };
 
 if (timezoneList.length !== timezonePointList.length) {
