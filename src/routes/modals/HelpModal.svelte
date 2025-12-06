@@ -22,9 +22,7 @@
 			>Link to old program (CNyIES)</a
 		>
 
-		<a href="https://github.com/MegapolisPlayer/FestIES" class="underline"
-			>Link to GitHub</a
-		>
+		<a href="https://github.com/MegapolisPlayer/FestIES" class="underline">Link to GitHub</a>
 
 		<Button
 			text="Close"
