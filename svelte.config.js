@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -29,7 +29,7 @@ const config = {
 			mode: 'auto',
 		},
 		adapter: adapter({
-			split: true,
+			config: "wrangler.jsonc"
 		}),
 		csrf: {
 			trustedOrigins: ['*.martinbykov.eu', 'http://localhost:5173']
