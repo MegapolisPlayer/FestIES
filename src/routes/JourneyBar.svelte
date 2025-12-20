@@ -5,9 +5,12 @@
 	import { error } from '@sveltejs/kit';
 
 	//journey bar effects
+	import { type JBEffect, JB_EFFECT_FREQUENCY } from '$lib/effect';
 	import { PKPEffect } from '$lib/effects/pkp';
 	import { PendolinoEffect } from '$lib/effects/pendolino';
-	import { type JBEffect, JB_EFFECT_FREQUENCY } from '$lib/effect';
+	import { PolregioEffect } from '$lib/effects/polregio';
+	import { BuildingEffect } from '$lib/effects/building';
+	import { ForestEffect } from '$lib/effects/forest';
 
 	let eventValue = $state(-1);
 	let eventInterval: NodeJS.Timeout | undefined = $state(undefined);
@@ -32,8 +35,10 @@
 
 		eventValue = Math.trunc(Math.random() * effects.length);
 
-		await effects[eventValue].predraw();
+		await effects[eventValue].predraw(context.canvas.width);
 		await effects[eventValue].draw(context);
+
+		context.clearRect(0, 0, sizeX, sizeY);
 
 		eventValue = -1;
 		setTimeout(eventIntervalFunction, JB_EFFECT_FREQUENCY);
@@ -45,10 +50,19 @@
 		if (!browser) return;
 
 		effects.push(new PKPEffect());
-		await effects[0].loadImages();
+		await effects.at(-1)?.loadImages();
 
 		effects.push(new PendolinoEffect());
-		await effects[1].loadImages();
+		await effects.at(-1)?.loadImages();
+
+		effects.push(new PolregioEffect());
+		await effects.at(-1)?.loadImages();
+
+		effects.push(new ForestEffect());
+		await effects.at(-1)?.loadImages();
+
+		effects.push(new BuildingEffect());
+		await effects.at(-1)?.loadImages();
 
 		canvas = document.getElementById(value) as HTMLCanvasElement;
 		context = canvas.getContext('2d') as CanvasRenderingContext2D;
@@ -88,7 +102,7 @@
 </script>
 
 <div
-	class="relative flex w-full grow flex-row items-center justify-center gap-2 rounded-t-4xl bg-black/20 p-5 max-lg:min-h-10 lg:min-h-20"
+	class="relative flex w-full grow flex-row items-center justify-center gap-2 rounded-t-4xl bg-black/20 p-5 max-lg:min-h-10 max-lg:h-10 max-lg:max-h-10 lg:min-h-20 lg:h-20 lg:max-h-20"
 >
 	{#key eventValue}
 		{#if eventValue == -1}

@@ -1,4 +1,4 @@
-import { type JBEffect, JB_TRAIN_SPEED } from '$lib/effect';
+import { type JBEffect, JB_TRAIN_SPEED, JB_EFFECT_WAGON_HEIGHT, JB_EFFECT_WAGON_LENGTH, JB_EFFECT_LOCO_LENGTH } from '$lib/effect';
 
 export class PKPEffect implements JBEffect {
 	loco: HTMLImageElement;
@@ -20,7 +20,7 @@ export class PKPEffect implements JBEffect {
 	}
 
 	async loadImages() {
-		await Promise.all([
+		return Promise.all([
 			new Promise((resolve) => {
 				this.loco?.addEventListener('load', () => {
 					resolve(0);
@@ -47,49 +47,67 @@ export class PKPEffect implements JBEffect {
 	async predraw() {
 		const amount = Math.trunc(5 + Math.random() * 5);
 
+		this.wagons = [];
 		for (let w = 0; w < amount; w++) {
 			this.wagons.push(Math.trunc(Math.random() * 3));
 		}
 	}
 
 	async draw(context: CanvasRenderingContext2D) {
-		this.x = -275;
+		const returning = Boolean(Math.round(Math.random()));
+
+		if (!returning) this.x = -JB_EFFECT_WAGON_LENGTH;
+		else this.x = context.canvas.width + (this.wagons.length + 1) * JB_EFFECT_WAGON_LENGTH;
 
 		return new Promise((resolve) => {
-			//all wagons 275x75 px
+			//all wagons JB_EFFECT_WAGON_LENGTHx75 px
 			const i = setInterval(() => {
 				context?.clearRect(0, 0, context.canvas.width, context.canvas.height);
-				context?.drawImage(this.loco as HTMLImageElement, this.x, context.canvas.height - 75);
+
+				//loco in front
+				if (!returning) {
+					context?.drawImage(this.loco as HTMLImageElement, this.x, context.canvas.height - JB_EFFECT_WAGON_HEIGHT);
+				}
 
 				for (let w = 0; w < this.wagons.length; w++) {
 					switch (this.wagons[w]) {
 						case 0:
 							context?.drawImage(
 								this.w1 as HTMLImageElement,
-								this.x - (w + 1) * 275,
-								context.canvas.height - 75
+								this.x - (w + 1) * JB_EFFECT_WAGON_LENGTH,
+								context.canvas.height - JB_EFFECT_WAGON_HEIGHT
 							);
 							break;
 						case 1:
 							context?.drawImage(
 								this.w2 as HTMLImageElement,
-								this.x - (w + 1) * 275,
-								context.canvas.height - 75
+								this.x - (w + 1) * JB_EFFECT_WAGON_LENGTH,
+								context.canvas.height - JB_EFFECT_WAGON_HEIGHT
 							);
 							break;
 						case 2:
 							context?.drawImage(
 								this.w3 as HTMLImageElement,
-								this.x - (w + 1) * 275,
-								context.canvas.height - 75
+								this.x - (w + 1) * JB_EFFECT_WAGON_LENGTH,
+								context.canvas.height - JB_EFFECT_WAGON_HEIGHT
 							);
 							break;
 					}
 				}
 
-				this.x += JB_TRAIN_SPEED;
+				//loco in front when going back
+				if (returning) {
+					context?.drawImage(this.loco as HTMLImageElement, this.x - ((this.wagons.length) * JB_EFFECT_WAGON_LENGTH) - JB_EFFECT_LOCO_LENGTH, context.canvas.height - JB_EFFECT_WAGON_HEIGHT);
+				}
+
+				if (!returning) this.x += JB_TRAIN_SPEED;
+				else this.x -= JB_TRAIN_SPEED;
+
 				//once all pass
-				if (this.x - this.wagons.length * 275 > context.canvas.width) {
+				if (
+					(!returning && this.x - (this.wagons.length) * JB_EFFECT_WAGON_LENGTH - JB_EFFECT_LOCO_LENGTH > context.canvas.width) ||
+					(returning && this.x + JB_EFFECT_WAGON_LENGTH < 0)
+				) {
 					clearInterval(i);
 					resolve(undefined);
 					return;

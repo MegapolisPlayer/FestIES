@@ -101,12 +101,13 @@
 	});
 </script>
 
-<div class="flex max-h-full grow flex-col gap-2 rounded-4xl bg-black/20 p-5">
-	<div class="flex w-full items-center gap-2 max-lg:flex-col lg:flex-row">
-		<h2 class="font-medium text-nowrap max-lg:text-base lg:text-2xl">
+<div class="flex max-h-full grow flex-col gap-2 rounded-4xl bg-black/20 max-lg:p-2 lg:p-5">
+	<div class="flex w-full items-center max-lg:gap-0 lg:gap-2 max-lg:flex-col lg:flex-row">
+		<h2 class="font-medium text-nowrap max-lg:text-sm lg:text-2xl">
 			{m.timezoneMap({}, { locale: locale as LanguageType })}
 		</h2>
-		<p class="text-center text-sm">
+		<div class="grow max-lg:hidden"></div>
+		<p class="text-center text-sm max-lg:text-xs leading-4 max-lg:w-full max-w-full text-ellipsis max-lg:text-nowrap lg:text-left">
 			{m.thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones(
 				{},
 				{ locale: locale as LanguageType }

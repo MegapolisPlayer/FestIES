@@ -786,3 +786,9 @@ export const dateToString = (d: Date): string => {
 if (timezoneList.length !== timezonePointList.length) {
 	throw error(500, `Assertion failed ${timezoneList.length} ${timezonePointList.length}`);
 }
+
+export const asyncDelay = (time: number) => {
+	return new Promise((resolve) => setTimeout(() => {
+		resolve(0);
+	}, time));
+}

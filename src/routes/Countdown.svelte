@@ -27,7 +27,7 @@
 	class="
 	flex w-full flex-col gap-2 rounded-4xl bg-black/20 p-5 whitespace-nowrap
 	{countdown.days > 360 ? 'text-neutral-500' : ''}
-	{isDone ? 'text-amber-400' : ''}
+	{isDone ? 'text-amber-400! **:text-amber-400!' : ''}
 "
 >
 	<div class="flex w-full gap-2 max-lg:flex-col lg:flex-row">
@@ -64,9 +64,7 @@
 		xl:text-[8rem] xl:leading-24 2xl:text-[10rem] 2xl:leading-30"
 	>
 		<div
-			class="flex flex-col gap-0 {countdown.days > 0 ? '' : 'text-neutral-500'}  {isDone
-				? 'text-amber-400!'
-				: ''}"
+			class="flex flex-col gap-0 {countdown.days == 0 ? 'text-neutral-500' : ''}"
 		>
 			<span class="">
 				{Math.abs(countdown.days).toFixed().padStart(2, '0')}:
@@ -79,10 +77,7 @@
 		</div>
 
 		<div
-			class="flex flex-col gap-0 {countdown.hours > 0 ||
-			(countdown.hours == 0 && countdown.days > 0)
-				? ''
-				: 'text-neutral-500'} {isDone ? 'text-amber-400!' : ''}"
+			class="flex flex-col gap-0 {(countdown.hours == 0 && countdown.days == 0) ? 'text-neutral-500' : ''}"
 		>
 			<span class="">
 				{Math.abs(countdown.hours).toFixed().padStart(2, '0')}:
@@ -94,7 +89,8 @@
 			</span>
 		</div>
 
-		<div class="flex flex-col gap-0">
+		<div class="flex flex-col gap-0 {countdown.minutes == 0 &&
+			(countdown.hours == 0 && countdown.days == 0 ? "text-neutral-500" : "")}">
 			<span class="">
 				{Math.abs(countdown.minutes).toFixed().padStart(2, '0')}:
 			</span>
