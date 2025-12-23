@@ -35,8 +35,11 @@
 	let interval: NodeJS.Timeout | undefined = $state(undefined);
 	let interval2: NodeJS.Timeout | undefined = $state(undefined);
 
+	let calculatedSnowLimit = $derived(Math.min(HARD_SNOWFLAKE_LIMIT, snowLimit));
+
 	onMount(async () => {
 		if (!browser) return;
+		if(calculatedSnowLimit === 0) return;
 
 		snowflakeImage = new Image();
 		snowflakeImage.src = '/snowflake-line.png';
@@ -58,6 +61,9 @@
 		context.strokeStyle = `rgb(255, 255, 255, 127})`;
 		context.lineWidth = 7;
 
+		snowflakes.clear();
+		snowflakeId = 0;
+
 		new ResizeObserver(() => {
 			context?.clearRect(0, 0, sizeX, sizeY);
 			snowflakes.clear();
@@ -74,7 +80,7 @@
 		}).observe(canvas);
 
 		interval = setInterval(() => {
-			if (snowflakes.size >= Math.min(HARD_SNOWFLAKE_LIMIT, snowLimit)) return;
+			if (snowflakes.size >= calculatedSnowLimit) return;
 
 			//horizontal spawn or vertical?
 			let val = Math.random() < sizeY / sizeX;
@@ -93,7 +99,7 @@
 
 			snowflakes.set(snowflakeId, o);
 			snowflakeId++;
-		}, 100);
+		}, (HARD_SNOWFLAKE_LIMIT-calculatedSnowLimit)+25);
 
 		interval2 = setInterval(() => {
 			context?.clearRect(0, 0, sizeX, sizeY);
