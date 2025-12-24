@@ -1,6 +1,5 @@
 import { BEAT_FREQUENCY } from '$lib';
 import type { RequestEvent } from '@sveltejs/kit';
-import { SvelteMap } from 'svelte/reactivity';
 import * as schema from "$lib/server/db/schema";
 import { count, eq, lte } from 'drizzle-orm';
 import type { LibSQLDatabase } from 'drizzle-orm/libsql';
