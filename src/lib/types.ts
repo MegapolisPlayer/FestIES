@@ -1,4 +1,4 @@
-export type LanguageType = 'en' | 'cs' | 'ru' | 'de' | 'pl' | 'hu' | 'fr' | 'es' | 'ua';
+export type LanguageType = 'en' | 'cs' | 'ru' | 'de' | 'pl' | 'hu' | 'fr' | 'es' | 'ua' | 'it';
 
 export type TimezoneType = {
 	hour: number;

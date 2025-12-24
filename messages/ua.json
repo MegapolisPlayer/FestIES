@@ -38,5 +38,9 @@
 	"volumeControl": "Регулювання гучності",
 	"theNewYearIsHere": "Новий рік настав!",
 	"theCountdownHasEnded": "Зворотний відлік завершено!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ця карта є лише наближенням через складність часових поясів"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ця карта є лише наближенням через складність часових поясів",
+	"userOnline0": "користувачів онлайн",
+	"userOnline1": "користувач онлайн",
+	"userOnline234": "користувачі онлайн",
+	"userOnlineP": "користувачів онлайн"
 }

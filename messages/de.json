@@ -38,5 +38,9 @@
 	"volumeControl": "Lautstärkeregelung",
 	"theNewYearIsHere": "Das neue Jahr ist da!",
 	"theCountdownHasEnded": "Der Countdown ist beendet!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Diese Karte ist nur eine Annäherung aufgrund der Komplexität der Zeitzonen"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Diese Karte ist nur eine Annäherung aufgrund der Komplexität der Zeitzonen",
+	"userOnline0": "Benutzer online",
+	"userOnline1": "Benutzer online",
+	"userOnline234": "Benutzer online",
+	"userOnlineP": "Benutzer online"
 }

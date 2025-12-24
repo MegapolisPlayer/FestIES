@@ -38,5 +38,9 @@
 	"volumeControl": "Contrôle du volume",
 	"theNewYearIsHere": "La nouvelle année est arrivée !",
 	"theCountdownHasEnded": "Le compte à rebours est terminé !",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Cette carte n'est qu'une approximation en raison de la complexité des fuseaux horaires"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Cette carte n'est qu'une approximation en raison de la complexité des fuseaux horaires",
+	"userOnline0": "utilisateurs en ligne",
+	"userOnline1": "utilisateur en ligne",
+	"userOnline234": "utilisateurs en ligne",
+	"userOnlineP": "utilisateurs en ligne"
 }

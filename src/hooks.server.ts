@@ -1,6 +1,8 @@
 import type { Handle } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
+import { isLimited } from '$lib/server/rate/+index';
+import { error } from '@sveltejs/kit';
 
 const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
@@ -28,4 +30,11 @@ const handleSecurity: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-export const handle: Handle = sequence(handleParaglide, handleSecurity);
+const handleRateLimit: Handle = async ({ event, resolve }) => {
+	if((await isLimited(event))) {
+		throw error(429, "Too many requests.");
+	}
+	return resolve(event);
+};
+
+export const handle: Handle = sequence(handleParaglide, handleSecurity, handleRateLimit);

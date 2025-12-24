@@ -25,7 +25,7 @@
 
 <div
 	class="
-	flex w-full flex-col gap-2 rounded-4xl bg-black/20 p-5 whitespace-nowrap
+	flex w-full flex-col gap-2 rounded-4xl bg-black/20 p-5 whitespace-nowrap shadow-lg
 	{countdown.days > 360 ? 'text-neutral-500' : ''}
 	{isDone ? 'text-amber-400! **:text-amber-400!' : ''}
 "

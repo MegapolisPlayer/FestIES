@@ -38,5 +38,9 @@
 	"volumeControl": "Регулировка громкости",
 	"theNewYearIsHere": "Новый год наступил!",
 	"theCountdownHasEnded": "Обратный отсчет завершен!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Эта карта является лишь приближением из-за сложности часовых поясов"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Эта карта является лишь приближением из-за сложности часовых поясов",
+	"userOnline0": "пользователей онлайн",
+	"userOnline1": "пользователь онлайн",
+	"userOnline234": "пользователи онлайн",
+	"userOnlineP": "пользователей онлайн"
 }

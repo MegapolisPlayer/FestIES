@@ -101,7 +101,7 @@
 	});
 </script>
 
-<div class="flex max-h-full grow flex-col gap-2 rounded-4xl bg-black/20 max-lg:p-2 lg:p-5">
+<div class="shadow-lg  flex max-h-full grow flex-col gap-2 rounded-4xl bg-black/20 max-lg:p-2 lg:p-5">
 	<div class="flex w-full items-center max-lg:flex-col max-lg:gap-0 lg:flex-row lg:gap-2">
 		<h2 class="font-medium text-nowrap max-lg:text-sm lg:text-2xl">
 			{m.timezoneMap({}, { locale: locale as LanguageType })}

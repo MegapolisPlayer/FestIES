@@ -37,6 +37,13 @@ export const writeMilliseconds = (milliseconds: number, locale: string) => {
 	else return m.millisecondP({}, { locale: locale as LanguageType });
 };
 
+export const writeUsersOnline = (users: number, locale: string) => {
+	if (users == 0) return m.userOnline0({}, { locale: locale as LanguageType });
+	else if (users == 1) return m.userOnline1({}, { locale: locale as LanguageType });
+	else if (users <= 4) return m.userOnline234({}, { locale: locale as LanguageType });
+	else return m.userOnlineP({}, { locale: locale as LanguageType });
+}
+
 export const makeTimezone = (
 	hour: number,
 	cities: string[],
@@ -795,9 +802,11 @@ export const asyncDelay = (time: number) => {
 	);
 };
 
-export const PROGRAM_VERSION = '1.0.2';
+export const PROGRAM_VERSION = '1.0.3';
 //own festive mix
 export const DEFAULT_PLAYLIST =
 	'https://www.youtube.com/embed/videoseries?loop=1&si=9tV7jJed9H4lPkHr&amp;list=PL5d1YE_8Im7Nh_4krlRdBNBsGJFioTzl5';
 
 export const HARD_SNOWFLAKE_LIMIT = 2000;
+
+export const BEAT_FREQUENCY = 500;

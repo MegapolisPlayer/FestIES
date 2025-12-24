@@ -38,5 +38,9 @@
 	"volumeControl": "Volume Control",
 	"theNewYearIsHere": "The New Year is here!",
 	"theCountdownHasEnded": "The countdown has ended!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "This map is only an approximation due to the complexity of timezones"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "This map is only an approximation due to the complexity of timezones",
+	"userOnline0": "users online",
+	"userOnline1": "user online",
+	"userOnline234": "users online",
+	"userOnlineP": "users online"
 }

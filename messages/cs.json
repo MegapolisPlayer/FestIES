@@ -38,5 +38,9 @@
 	"volumeControl": "Ovládání hlasitosti",
 	"theNewYearIsHere": "Nový rok je tady!",
 	"theCountdownHasEnded": "Odpočítávání skončilo!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Tato mapa je pouze přibližná kvůli složitosti časových pásem"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Tato mapa je pouze přibližná kvůli složitosti časových pásem",
+	"userOnline0": "uživatelů online",
+	"userOnline1": "uživatel online",
+	"userOnline234": "uživatelé online",
+	"userOnlineP": "uživatelů online"
 }

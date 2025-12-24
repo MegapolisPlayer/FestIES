@@ -38,5 +38,9 @@
 	"volumeControl": "Hangerőszabályzó",
 	"theNewYearIsHere": "Itt az új év!",
 	"theCountdownHasEnded": "A visszaszámlálás véget ért!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ez a térkép csak egy közelítés az időzónák összetettsége miatt"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ez a térkép csak egy közelítés az időzónák összetettsége miatt",
+	"userOnline0": "felhasználók online",
+	"userOnline1": "felhasználó online",
+	"userOnline234": "felhasználók online",
+	"userOnlineP": "felhasználók online"
 }

@@ -34,6 +34,12 @@
 			<li>Fixed some values not being set after updates</li>
 		</VersionItem>
 
+		<VersionItem version="1.0.3" date="24.12.2025">
+			<li>Added Italian</li>
+			<li>Added concurrent users amount</li>
+			<li>Graphical improvements</li>
+		</VersionItem>
+
 		<Button
 			text="Close"
 			emoji="close-circle"

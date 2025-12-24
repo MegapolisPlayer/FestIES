@@ -187,7 +187,7 @@
 	});
 </script>
 
-<div class="flex grow flex-col overflow-hidden rounded-4xl bg-black/20 p-5 max-lg:hidden">
+<div class="shadow-lg flex grow flex-col overflow-hidden rounded-4xl bg-black/20 p-5 max-lg:hidden">
 	<h2 class="text-2xl font-medium">{m.clock({}, { locale: locale as LanguageType })}</h2>
 
 	<div class="relative z-24 h-full w-full grow">

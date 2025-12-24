@@ -38,5 +38,9 @@
 	"volumeControl": "Kontrola głośności",
 	"theNewYearIsHere": "Nowy Rok jest tutaj!",
 	"theCountdownHasEnded": "Odliczanie się zakończyło!",
-	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ta mapa jest tylko przybliżeniem ze względu na złożoność stref czasowych"
+	"thisMapIsOnlyAnApproximationDueToTheComplexityOfTimezones": "Ta mapa jest tylko przybliżeniem ze względu na złożoność stref czasowych",
+	"userOnline0": "użytkowników online",
+	"userOnline1": "użytkownik online",
+	"userOnline234": "użytkownicy online",
+	"userOnlineP": "użytkowników online"
 }
