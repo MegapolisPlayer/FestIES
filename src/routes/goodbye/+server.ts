@@ -5,11 +5,11 @@ import { error, json } from '@sveltejs/kit';
 
 export const POST = async (event) => {
 	const sessionId = event.cookies.get('sessionid');
-	if (!sessionId || !containsId(sessionId)) {
+	if (!sessionId || !(await containsId(event, sessionId))) {
 		return error(404);
 	}
 
-	removeOld(sessionId);
+	await removeOld(event, sessionId);
 	event.cookies.delete('sessionid', { path: '/' });
 
 	console.log('User left');

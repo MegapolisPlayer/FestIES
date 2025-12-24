@@ -9,8 +9,8 @@
 	let { settingsModal = $bindable(false), data } = $props();
 
 	let hasDifferentTime = $state(false);
-	let hasPlaylist = $state(data.playlist.length > 0);
-	let snowAmount = $state(data.snow);
+	let hasPlaylist = $derived(data.playlist.length > 0);
+	let snowAmount = $derived(data.snow);
 </script>
 
 <Modal bind:showModal={settingsModal}>
