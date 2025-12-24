@@ -31,8 +31,8 @@ const handleSecurity: Handle = async ({ event, resolve }) => {
 };
 
 const handleRateLimit: Handle = async ({ event, resolve }) => {
-	if((await isLimited(event))) {
-		throw error(429, "Too many requests.");
+	if (await isLimited(event)) {
+		throw error(429, 'Too many requests.');
 	}
 	return resolve(event);
 };

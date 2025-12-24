@@ -14,7 +14,7 @@
 	});
 </script>
 
-<div class="shadow-lg flex w-full flex-col gap-2 rounded-4xl bg-black/20 p-5">
+<div class="flex w-full flex-col gap-2 rounded-4xl bg-black/20 p-5 shadow-lg">
 	<h2
 		class="w-full font-medium text-nowrap text-ellipsis whitespace-nowrap max-lg:text-base lg:text-2xl"
 	>

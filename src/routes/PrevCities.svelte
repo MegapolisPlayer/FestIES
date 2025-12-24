@@ -17,7 +17,7 @@
 	);
 </script>
 
-<div class="shadow-lg flex h-full w-full grow flex-col gap-4 rounded-4xl bg-black/20 p-5">
+<div class="flex h-full w-full grow flex-col gap-4 rounded-4xl bg-black/20 p-5 shadow-lg">
 	<h2
 		class="w-full text-center {locale == 'de' || locale == 'cs'
 			? 'text-xl'

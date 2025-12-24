@@ -42,7 +42,7 @@ export const writeUsersOnline = (users: number, locale: string) => {
 	else if (users == 1) return m.userOnline1({}, { locale: locale as LanguageType });
 	else if (users <= 4) return m.userOnline234({}, { locale: locale as LanguageType });
 	else return m.userOnlineP({}, { locale: locale as LanguageType });
-}
+};
 
 export const makeTimezone = (
 	hour: number,

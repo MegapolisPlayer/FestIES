@@ -15,7 +15,7 @@
 	);
 </script>
 
-<div class="shadow-lg flex w-full grow flex-col gap-4 rounded-4xl bg-black/20 p-5">
+<div class="flex w-full grow flex-col gap-4 rounded-4xl bg-black/20 p-5 shadow-lg">
 	<h2 class="w-full shrink-0 text-center text-2xl font-medium">
 		{m.followingCities({}, { locale: locale as LanguageType })}
 	</h2>
