@@ -1,11 +1,10 @@
 import { BEAT_FREQUENCY } from '$lib';
 import type { RequestEvent } from '@sveltejs/kit';
 import { SvelteMap } from 'svelte/reactivity';
-import type { KVNamespace } from '@cloudflare/workers-types';
 
 export const LAST_BEAT_AGE_FOR_ACTIVE = Math.trunc(BEAT_FREQUENCY * 1.25);
 
-export let localConcurrencyMap: SvelteMap<string, number> = new SvelteMap();
+export const localConcurrencyMap: SvelteMap<string, number> = new SvelteMap();
 
 export const containsId = async (event: RequestEvent, key: string) => {
 	if (event.locals.dev) return event.locals.localmap.has(key);
@@ -34,7 +33,7 @@ export const getActive = async (event: RequestEvent) => {
 		return event.locals.localmap.size;
 	}
 	else {
-		let keys = [];
+		const keys = [];
 		let list = undefined;
 		do {
 			list = await event.locals.prodmap.list({

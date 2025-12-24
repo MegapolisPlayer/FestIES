@@ -9,7 +9,7 @@ declare global {
 		interface Locals {
 			localmap: SvelteMap<string, number>;
 			prodmap: KVNamespace<string>;
-			dev: Boolean;
+			dev: boolean;
 		}
 		// interface PageData {}
 		// interface PageState {}
