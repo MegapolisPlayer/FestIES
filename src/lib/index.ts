@@ -809,4 +809,4 @@ export const DEFAULT_PLAYLIST =
 
 export const HARD_SNOWFLAKE_LIMIT = 2000;
 
-export const BEAT_FREQUENCY = 500;
+export const BEAT_FREQUENCY = 60000;

@@ -6,7 +6,6 @@
 	import Snowflakes from './Snowflakes.svelte';
 	import { browser } from '$app/environment';
 	import { BEAT_FREQUENCY } from '$lib';
-	import { onDestroy } from 'svelte';
 
 	let { children, data } = $props();
 

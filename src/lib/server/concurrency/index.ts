@@ -3,7 +3,7 @@ import { SvelteMap } from 'svelte/reactivity';
 
 export const LAST_BEAT_AGE_FOR_ACTIVE = Math.trunc(BEAT_FREQUENCY * 1.25);
 
-let concurrencyMap: SvelteMap<string, number> = new SvelteMap();
+const concurrencyMap: SvelteMap<string, number> = new SvelteMap();
 
 export const containsId = (key: string) => {
 	return concurrencyMap.has(key);

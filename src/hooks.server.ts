@@ -1,7 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
-import { isLimited } from '$lib/server/rate/+index';
+import { isLimited } from '$lib/server/rate';
 import { error } from '@sveltejs/kit';
 
 const handleParaglide: Handle = ({ event, resolve }) =>

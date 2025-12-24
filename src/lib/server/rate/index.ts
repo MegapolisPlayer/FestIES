@@ -1,4 +1,3 @@
-import { error } from '@sveltejs/kit';
 import { RateLimiter } from 'sveltekit-rate-limiter/server';
 import type { RequestEvent } from '@sveltejs/kit';
 
