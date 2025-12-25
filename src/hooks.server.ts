@@ -1,8 +1,6 @@
 import type { Handle } from '@sveltejs/kit';
 import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
-import { isLimited } from '$lib/server/rate';
-import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import * as d1 from 'drizzle-orm/d1';
 import * as schema from "$lib/server/db/schema";
@@ -34,13 +32,6 @@ const handleSecurity: Handle = async ({ event, resolve }) => {
 	return response;
 };
 
-const handleRateLimit: Handle = async ({ event, resolve }) => {
-	if (await isLimited(event)) {
-		throw error(429, 'Too many requests.');
-	}
-	return resolve(event);
-};
-
 let db: undefined | libsql.LibSQLDatabase<typeof schema> = undefined;
 const handleMap: Handle = async ({ event, resolve }) => {
 	if(env.DEV == 'true') {
@@ -58,4 +49,4 @@ const handleMap: Handle = async ({ event, resolve }) => {
 	return resolve(event);	
 }
 
-export const handle: Handle = sequence(handleMap, handleParaglide, handleSecurity, handleRateLimit);
+export const handle: Handle = sequence(handleMap, handleParaglide, handleSecurity);
