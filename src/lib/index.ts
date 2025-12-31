@@ -1,6 +1,6 @@
 import { m } from './paraglide/messages';
 import type { CountdownType, LanguageType, PointType, TimezoneType } from './types';
-import { error } from '@sveltejs/kit';
+import { error, type RequestEvent } from '@sveltejs/kit';
 
 export const writeDays = (days: number, locale: string) => {
 	if (days == 0) return m.day0({}, { locale: locale as LanguageType });
@@ -792,6 +792,7 @@ export const asyncDelay = (time: number) => {
 };
 
 export const PROGRAM_VERSION = '1.0.4';
+
 //own festive mix
 export const DEFAULT_PLAYLIST =
 	'https://www.youtube.com/embed/videoseries?loop=1&si=9tV7jJed9H4lPkHr&amp;list=PL5d1YE_8Im7Nh_4krlRdBNBsGJFioTzl5';

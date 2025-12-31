@@ -12,13 +12,6 @@
 		data.countdown.getTime() + new Date().getTimezoneOffset() * 60 * 1000 !=
 			new Date(new Date().getFullYear() + 1, 0, 1, 0, 0, 0, 0).getTime()
 	);
-	$inspect(
-		data.countdown.getTime() + new Date().getTimezoneOffset() * 60 * 1000,
-		new Date(new Date().getFullYear() + 1, 0, 1, 0, 0, 0, 0).getTime()
-	);
-	let localizedCountdown = $derived(
-		new Date(data.countdown.getTime() - new Date().getTimezoneOffset() * 60 * 1000)
-	);
 	let hasPlaylist = $derived(data.playlist.length > 0);
 	let snowAmount = $derived(data.snow);
 </script>
@@ -34,14 +27,7 @@
 					new Date(
 						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
 					).toISOString()
-				);
-				console.log(time);
-				console.log(new Date().getTimezoneOffset());
-				console.log(
-					new Date(
-						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
-					).toISOString()
-				);
+				);;
 				return async ({ update }) => {
 					await update({ reset: false, invalidateAll: true });
 				};
