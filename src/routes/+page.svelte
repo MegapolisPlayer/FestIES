@@ -28,9 +28,7 @@
 
 	let interval: NodeJS.Timeout | undefined = $state(undefined);
 	let now = $state(new Date());
-	let target = $derived(new Date(data.countdown.getTime()));
-
-	$inspect(data);
+	let target = $derived(new Date(data.countdown.getTime() + (now.getTimezoneOffset()*60*1000)));
 
 	const updateLocale = () => {
 		if (data.languages.length == 0) {

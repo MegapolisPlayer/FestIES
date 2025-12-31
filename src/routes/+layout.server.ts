@@ -13,7 +13,7 @@ export const load = async (event) => {
 		event.cookies.set('set', PROGRAM_VERSION, { path: '/' });
 		event.cookies.set(
 			'time',
-			new Date(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0).toISOString(),
+			Date.UTC(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0),
 			{ path: '/' }
 		);
 	}
@@ -24,7 +24,7 @@ export const load = async (event) => {
 		playlist: event.cookies.get('playlist') as string,
 		millisecond: (event.cookies.get('millisecond') as string) == 'true',
 		journey: (event.cookies.get('journey') as string) == 'true',
-		countdown: new Date(event.cookies.get('time') as string),
+		countdown: new Date(parseInt(event.cookies.get('time'))),
 		snow: parseInt(event.cookies.get('snow') as string)
 	};
 };
