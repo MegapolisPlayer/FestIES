@@ -6,7 +6,7 @@
 
 	let { locale, now, target } = $props();
 
-	let timezones = $state(
+	let timezones = $derived(
 		timezoneList
 			.filter((v) => {
 				return countdownValue(v.hour, target, now) <= 0;
