@@ -21,7 +21,7 @@
 	</h2>
 	{#if timezones.length > 0}
 		<div class="flex h-full max-h-full min-h-fit grow flex-col flex-nowrap gap-0 overflow-scroll!">
-			{#key timezones}
+			{#key timezones.length}
 				{#each timezones as timezone, i (i)}
 					<TimezoneItem {timezone} {target} {now} />
 				{/each}

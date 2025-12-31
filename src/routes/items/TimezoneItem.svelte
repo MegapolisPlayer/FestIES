@@ -24,6 +24,7 @@
 
 		mainIndex++;
 		if (mainIndex === timezone.cities.length) mainIndex = 0;
+
 		mainCity = timezone.cities[mainIndex];
 	};
 	const updateAuxIndex = () => {
@@ -31,6 +32,7 @@
 
 		auxIndex++;
 		if (auxIndex === timezone.otherCities.length) auxIndex = 0;
+		
 		auxCity = timezone.otherCities[auxIndex];
 	};
 
@@ -44,9 +46,6 @@
 	onDestroy(() => {
 		clearInterval(mainInterval);
 		clearInterval(auxInterval);
-
-		mainIndex = 0;
-		auxIndex = 0;
 	});
 </script>
 
