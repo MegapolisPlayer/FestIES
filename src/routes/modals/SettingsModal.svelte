@@ -27,7 +27,7 @@
 					new Date(
 						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
 					).toISOString()
-				);;
+				);
 				return async ({ update }) => {
 					await update({ reset: false, invalidateAll: true });
 				};
