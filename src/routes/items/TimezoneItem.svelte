@@ -32,7 +32,7 @@
 
 		auxIndex++;
 		if (auxIndex === timezone.otherCities.length) auxIndex = 0;
-		
+
 		auxCity = timezone.otherCities[auxIndex];
 	};
 
