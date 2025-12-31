@@ -7,9 +7,11 @@
 	let { locale, now, target } = $props();
 
 	let timezones = $derived(
-		timezoneList.filter((v) => {
-			return countdownValue(v.hour, target, now) > 0;
-		})
+		timezoneList
+			.filter((v) => {
+				return countdownValue(v.hour, target, now) > 0;
+			})
+			.sort((a, b) => b.hour - a.hour)
 	);
 </script>
 
@@ -19,9 +21,11 @@
 	</h2>
 	{#if timezones.length > 0}
 		<div class="flex h-full max-h-full min-h-fit grow flex-col flex-nowrap gap-0 overflow-scroll!">
-			{#each timezones as timezone, i (i)}
-				<TimezoneItem {timezone} {target} {now} />
-			{/each}
+			{#key timezones}
+				{#each timezones as timezone, i (i)}
+					<TimezoneItem {timezone} {target} {now} />
+				{/each}
+			{/key}
 		</div>
 	{:else}
 		<div class="flex w-full grow flex-col items-center justify-center text-center">

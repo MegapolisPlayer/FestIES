@@ -25,9 +25,11 @@
 	</h2>
 	{#if timezones.length > 0}
 		<div class="flex h-full max-h-full min-h-0 grow flex-col flex-nowrap gap-0 overflow-scroll!">
-			{#each timezones as timezone, i (i)}
-				<TimezoneItem {timezone} {target} {now} reverse={true} />
-			{/each}
+			{#key timezones}
+				{#each timezones as timezone, i (i)}
+					<TimezoneItem {timezone} {target} {now} reverse={true} />
+				{/each}
+			{/key}
 		</div>
 	{:else}
 		<div class="flex w-full grow flex-col items-center justify-center text-center">

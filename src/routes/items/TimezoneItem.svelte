@@ -38,15 +38,18 @@
 		mainInterval = setInterval(updateMainIndex, 2500 + Math.random() * 1000);
 		auxInterval = setInterval(updateAuxIndex, 2500 + Math.random() * 1000);
 
-		mainIndex = 0;
-		auxIndex = 0;
-
 		updateMainIndex();
 		updateAuxIndex();
+
+		mainIndex = 0;
+		auxIndex = 0;
 	});
 	onDestroy(() => {
 		clearInterval(mainInterval);
 		clearInterval(auxInterval);
+
+		mainIndex = 0;
+		auxIndex = 0;
 	});
 </script>
 
