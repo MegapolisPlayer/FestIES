@@ -6,7 +6,7 @@ import { setCookies } from '$lib/server';
 export const POST = async (event) => {
 	if (env.DEV == 'true') return json({});
 
-	setCookies(event);
+	await setCookies(event);
 
 	let sessionId = event.cookies.get('sessionid');
 	if (!sessionId || !(await containsId(event, sessionId))) {

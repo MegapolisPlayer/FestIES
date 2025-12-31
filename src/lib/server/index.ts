@@ -1,10 +1,11 @@
 import type { RequestEvent } from "@sveltejs/kit";
 import { PROGRAM_VERSION, DEFAULT_PLAYLIST, HARD_SNOWFLAKE_LIMIT } from "$lib";
 import { locales } from "$lib/paraglide/runtime";
+import { invalidateAll } from "$app/navigation";
 
 export const COOKIE_VERSION = PROGRAM_VERSION + '.1000';
 
-export const setCookies = (event: RequestEvent) => {
+export const setCookies = async (event: RequestEvent) => {
 	const oldCookieVersion = event.cookies.get('set');
     console.log("Cookie ping", oldCookieVersion, '/', COOKIE_VERSION);
 	if (oldCookieVersion != COOKIE_VERSION) {
@@ -19,5 +20,6 @@ export const setCookies = (event: RequestEvent) => {
 		event.cookies.set('time', String(Date.UTC(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0)), {
 			path: '/'
 		});
+        await invalidateAll();
 	}
 };

@@ -2,7 +2,7 @@ import type { LanguageType } from '$lib/types.js';
 import { setCookies } from '$lib/server';
 
 export const load = async (event) => {
-	setCookies(event);	
+	await setCookies(event);
 
 	return {
 		background: event.cookies.get('background') as string,
