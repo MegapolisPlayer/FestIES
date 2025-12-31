@@ -40,9 +40,6 @@
 
 		updateMainIndex();
 		updateAuxIndex();
-
-		mainIndex = 0;
-		auxIndex = 0;
 	});
 	onDestroy(() => {
 		clearInterval(mainInterval);
