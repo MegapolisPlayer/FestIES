@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-cloudflare';
+import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -12,14 +12,14 @@ const config = {
 			directives: {
 				'default-src': ['none'],
 				'font-src': ['self', 'fonts.gstatic.com'],
-				'script-src': ['self', '*.cloudflare.com'],
+				'script-src': ['self'],
 				'object-src': ['self'],
 				'img-src': ['self'],
 				//sveltekit announcer issue + we use this
 				'style-src': ['self', 'fonts.googleapis.com', 'martinbykov.eu', 'unsafe-inline'],
 				'frame-ancestors': ['none'],
 				'connect-src': ['self'],
-				'frame-src': ['*.cloudflare.com', 'www.youtube-nocookie.com', 'youtube-nocookie.com', 'youtube.com', 'www.youtube.com', 'consent.youtube.com'],
+				'frame-src': ['www.youtube-nocookie.com', 'youtube-nocookie.com', 'youtube.com', 'www.youtube.com', 'consent.youtube.com'],
 				'media-src': ['self']
 			},
 			// must be specified with either the `report-uri` or `report-to` directives, or both
@@ -28,10 +28,7 @@ const config = {
 			},
 			mode: 'auto',
 		},
-		adapter: adapter({
-			config: "wrangler.jsonc",
-			fallback: 'plaintext'
-		}),
+		adapter: adapter(),
 		csrf: {
 			trustedOrigins: ['festies.martinbykov.eu', 'http://localhost:5173']
 		}

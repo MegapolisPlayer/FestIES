@@ -44,6 +44,10 @@
 			<li>Fixed critical bugs</li>
 		</VersionItem>
 
+		<VersionItem version="1.0.5" date="22.2.2026">
+			<li>Changed hosting backend</li>
+		</VersionItem>
+
 		<Button
 			text="Close"
 			emoji="close-circle"

@@ -10,7 +10,7 @@ export const load = async (event) => {
 		playlist: event.cookies.get('playlist') as string,
 		millisecond: (event.cookies.get('millisecond') as string) == 'true',
 		journey: (event.cookies.get('journey') as string) == 'true',
-		countdown: new Date(parseInt(event.cookies.get('time'))),
+		countdown: new Date(parseInt(event.cookies.get('time')!)),
 		snow: parseInt(event.cookies.get('snow') as string)
 	};
 };
