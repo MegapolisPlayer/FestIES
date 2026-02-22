@@ -2,9 +2,7 @@ import { locales } from '$lib/paraglide/runtime.js';
 import { fail } from '@sveltejs/kit';
 import { HARD_SNOWFLAKE_LIMIT } from '$lib';
 
-export const load = async (event) => {
-	return await event.parent();
-};
+export const load = async () => {};
 
 export const actions = {
 	settings: async (event) => {
@@ -42,11 +40,11 @@ export const actions = {
 			path: '/'
 		});
 
-		let time = '';
+		let time = 0;
 		if (customTime) {
-			time = new Date(formData.get('time')?.toString() as string).toISOString();
+			time = new Date(formData.get('time')?.toString() as string).getTime();
 		} else {
-			time = new Date(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0).toISOString();
+			time = Date.UTC(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0);
 		}
 
 		event.cookies.set('time', time, { path: '/' });

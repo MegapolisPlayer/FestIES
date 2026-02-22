@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
 	import type { LanguageType } from '$lib/types';
-	import { timezoneList } from '$lib';
+	import { countdownValue, timezoneList } from '$lib';
 	import TimezoneItem from './items/TimezoneItem.svelte';
 
 	let { locale, now, target } = $props();
 
-	let timezones = $state(
-		timezoneList.filter((v) => {
-			return (
-				target.getTime() - (v.hour + now.getTimezoneOffset() / 60) * 3600000 - now.getTime() > 0
-			);
-		})
+	let timezones = $derived(
+		timezoneList
+			.filter((v) => {
+				return countdownValue(v.hour, target, now) > 0;
+			})
+			.sort((a, b) => b.hour - a.hour)
 	);
 </script>
 
@@ -21,9 +21,11 @@
 	</h2>
 	{#if timezones.length > 0}
 		<div class="flex h-full max-h-full min-h-fit grow flex-col flex-nowrap gap-0 overflow-scroll!">
-			{#each timezones as timezone, i (i)}
-				<TimezoneItem {timezone} {target} {now} />
-			{/each}
+			{#key timezones.length}
+				{#each timezones as timezone, i (i)}
+					<TimezoneItem {timezone} {target} {now} />
+				{/each}
+			{/key}
 		</div>
 	{:else}
 		<div class="flex w-full grow flex-col items-center justify-center text-center">

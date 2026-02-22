@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { TimezoneType } from '$lib/types';
-	import { makeCountdown } from '$lib';
+	import { countdownValue, getOffsetTime, makeCountdown } from '$lib';
 	import { onDestroy, onMount } from 'svelte';
 
 	let {
@@ -10,12 +10,7 @@
 		reverse = false
 	}: { timezone: TimezoneType; target: Date; now: Date; reverse?: boolean | undefined } = $props();
 
-	let countdown = $derived(
-		makeCountdown(
-			new Date(target.getTime() - (timezone.hour + now.getTimezoneOffset() / 60) * 3600000),
-			now
-		)
-	);
+	let countdown = $derived(makeCountdown(new Date(getOffsetTime(timezone.hour, target, now)), now));
 
 	let mainInterval: NodeJS.Timeout | undefined = $state(undefined);
 	let auxInterval: NodeJS.Timeout | undefined = $state(undefined);
@@ -29,6 +24,7 @@
 
 		mainIndex++;
 		if (mainIndex === timezone.cities.length) mainIndex = 0;
+
 		mainCity = timezone.cities[mainIndex];
 	};
 	const updateAuxIndex = () => {
@@ -36,6 +32,7 @@
 
 		auxIndex++;
 		if (auxIndex === timezone.otherCities.length) auxIndex = 0;
+
 		auxCity = timezone.otherCities[auxIndex];
 	};
 
@@ -56,17 +53,16 @@
 	class="flex max-h-6 min-h-6 w-full max-w-full min-w-0! flex-row items-center gap-2 overflow-hidden! **:text-nowrap"
 >
 	<div class="flex w-fit flex-row gap-0 overflow-hidden!">
-		<span class={!reverse && countdown.days > 0 ? '' : 'text-neutral-500'}>
+		<span class={!reverse && countdown.days == 0 ? 'text-neutral-500' : ''}>
 			{Math.abs(countdown.days).toFixed().padStart(2, '0')}:
-		</span><span
-			class={!reverse && (countdown.hours > 0 || (countdown.hours == 0 && countdown.days > 0))
-				? ''
-				: 'text-neutral-500'}
-		>
+		</span>
+		<span class={!reverse && countdown.hours == 0 && countdown.days == 0 ? 'text-neutral-500' : ''}>
 			{Math.abs(countdown.hours).toFixed().padStart(2, '0')}:
-		</span><span>
+		</span>
+		<span>
 			{Math.abs(countdown.minutes).toFixed().padStart(2, '0')}:
-		</span><span>
+		</span>
+		<span>
 			{Math.abs(countdown.seconds).toFixed().padStart(2, '0')}
 		</span>
 	</div>

@@ -8,7 +8,10 @@
 
 	let { settingsModal = $bindable(false), data } = $props();
 
-	let hasDifferentTime = $state(false);
+	let hasDifferentTime = $state(
+		data.countdown.getTime() + new Date().getTimezoneOffset() * 60 * 1000 !=
+			new Date(new Date().getFullYear() + 1, 0, 1, 0, 0, 0, 0).getTime()
+	);
 	let hasPlaylist = $derived(data.playlist.length > 0);
 	let snowAmount = $derived(data.snow);
 </script>
@@ -17,17 +20,10 @@
 	<div class="flex w-full flex-col gap-2">
 		<form
 			class="flex grow flex-col gap-2"
-			use:enhance={async (event) => {
+			use:enhance={(event) => {
 				let time = event.formData.get('time') as string;
 				event.formData.set(
 					'time',
-					new Date(
-						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
-					).toISOString()
-				);
-				console.log(time);
-				console.log(new Date().getTimezoneOffset());
-				console.log(
 					new Date(
 						new Date(time).getTime() - new Date().getTimezoneOffset() * 60 * 1000
 					).toISOString()
@@ -62,7 +58,7 @@
 								name="time"
 								min={dateToString(new Date())}
 								required
-								value={dateToString(data.countdown as Date)}
+								value={dateToString(data.countdown)}
 								step={0}
 							/>
 							<label for="time" class="italic">Countdown target date and time</label>

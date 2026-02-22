@@ -3,7 +3,7 @@ import { paraglideMiddleware } from '$lib/paraglide/server';
 import { sequence } from '@sveltejs/kit/hooks';
 import { env } from '$env/dynamic/private';
 import * as d1 from 'drizzle-orm/d1';
-import * as schema from "$lib/server/db/schema";
+import * as schema from '$lib/server/db/schema';
 import * as libsql from 'drizzle-orm/libsql';
 
 const handleParaglide: Handle = ({ event, resolve }) =>

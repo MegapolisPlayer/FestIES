@@ -1,6 +1,6 @@
 import { m } from './paraglide/messages';
 import type { CountdownType, LanguageType, PointType, TimezoneType } from './types';
-import { error } from '@sveltejs/kit';
+import { error, type RequestEvent } from '@sveltejs/kit';
 
 export const writeDays = (days: number, locale: string) => {
 	if (days == 0) return m.day0({}, { locale: locale as LanguageType });
@@ -266,17 +266,6 @@ export const timezoneList: TimezoneType[] = [
 	makeTimezone(13.75, ['Chatham Islands (NZ.)'], []),
 	makeTimezone(14, ['Tabwakea Village (Kiri.)'], [])
 ].sort((a, b) => b.hour - a.hour);
-
-export const makeCountdown = (target: Date, now: Date): CountdownType => {
-	return {
-		days: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60 / 60 / 24)),
-		hours: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60 / 60) % 24),
-		minutes: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60) % 60),
-		seconds: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000) % 60),
-		milliseconds: Math.round((target.getTime() - now.getTime()) % 1000),
-		total: target.getTime() - now.getTime()
-	};
-};
 
 export const makeTimezonePoint = (x: number, y: number): PointType => {
 	return { x: x, y: y };
@@ -802,7 +791,8 @@ export const asyncDelay = (time: number) => {
 	);
 };
 
-export const PROGRAM_VERSION = '1.0.3';
+export const PROGRAM_VERSION = '1.0.4';
+
 //own festive mix
 export const DEFAULT_PLAYLIST =
 	'https://www.youtube.com/embed/videoseries?loop=1&si=9tV7jJed9H4lPkHr&amp;list=PL5d1YE_8Im7Nh_4krlRdBNBsGJFioTzl5';
@@ -810,3 +800,22 @@ export const DEFAULT_PLAYLIST =
 export const HARD_SNOWFLAKE_LIMIT = 2000;
 
 export const BEAT_FREQUENCY = 180000;
+
+export const makeCountdown = (target: Date, now: Date): CountdownType => {
+	return {
+		days: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60 / 60 / 24)),
+		hours: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60 / 60) % 24),
+		minutes: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000 / 60) % 60),
+		seconds: Math.round(Math.trunc((target.getTime() - now.getTime()) / 1000) % 60),
+		milliseconds: Math.round((target.getTime() - now.getTime()) % 1000),
+		total: target.getTime() - now.getTime()
+	};
+};
+
+export const getOffsetTime = (timezoneOffset: number, target: Date, now: Date) => {
+	return target.getTime() - (timezoneOffset + now.getTimezoneOffset() / 60) * (1000 * 60 * 60);
+};
+
+export const countdownValue = (timezoneOffset: number, target: Date, now: Date) => {
+	return getOffsetTime(timezoneOffset, target, now) - now.getTime();
+};
