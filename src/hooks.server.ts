@@ -34,18 +34,11 @@ const handleSecurity: Handle = async ({ event, resolve }) => {
 
 let db: undefined | libsql.LibSQLDatabase<typeof schema> = undefined;
 const handleMap: Handle = async ({ event, resolve }) => {
-	if(env.DEV == 'true') {
-		event.locals.dev = true;
-		if(!db) {
-			db = libsql.drizzle(env.DATABASE_URL ?? "file:local.db", { schema });
-		}	
-		event.locals.dblocal = db;
-	}
-	else {
-		event.locals.dev = false;
-		event.locals.dbprod = d1.drizzle(event.platform?.env.CONCURRENCY as D1Database, { schema })
-	}
-
+	event.locals.dev = true;
+	if(!db) {
+		db = libsql.drizzle(env.DATABASE_URL ?? "file:local.db", { schema });
+	}	
+	event.locals.db = db;
 	return resolve(event);	
 }
 
