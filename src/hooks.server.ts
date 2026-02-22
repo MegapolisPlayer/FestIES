@@ -35,11 +35,11 @@ const handleSecurity: Handle = async ({ event, resolve }) => {
 let db: undefined | libsql.LibSQLDatabase<typeof schema> = undefined;
 const handleMap: Handle = async ({ event, resolve }) => {
 	event.locals.dev = true;
-	if(!db) {
-		db = libsql.drizzle(env.DATABASE_URL ?? "file:local.db", { schema });
-	}	
+	if (!db) {
+		db = libsql.drizzle(env.DATABASE_URL ?? 'file:local.db', { schema });
+	}
 	event.locals.db = db;
-	return resolve(event);	
-}
+	return resolve(event);
+};
 
 export const handle: Handle = sequence(handleMap, handleParaglide, handleSecurity);

@@ -44,5 +44,7 @@ export const getActive = async (event: RequestEvent) => {
 		.delete(schema.sessions)
 		.where(lte(schema.sessions.time, String(now - LAST_BEAT_AGE_FOR_ACTIVE)));
 
-	return (await (db as LibSQLDatabase<typeof schema>).select({ count: count() }).from(schema.sessions))[0].count;
+	return (
+		await (db as LibSQLDatabase<typeof schema>).select({ count: count() }).from(schema.sessions)
+	)[0].count;
 };

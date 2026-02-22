@@ -1,5 +1,5 @@
-import type { LibSQLDatabase } from "drizzle-orm/libsql";
-import * as schema from "$lib/server/db/schema";
+import type { LibSQLDatabase } from 'drizzle-orm/libsql';
+import * as schema from '$lib/server/db/schema';
 
 declare global {
 	namespace App {
