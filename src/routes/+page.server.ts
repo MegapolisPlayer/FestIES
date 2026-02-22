@@ -47,7 +47,7 @@ export const actions = {
 			time = Date.UTC(new Date().getUTCFullYear() + 1, 0, 1, 0, 0, 0, 0);
 		}
 
-		event.cookies.set('time', time, { path: '/' });
+		event.cookies.set('time', String(time), { path: '/' });
 		event.cookies.set(
 			'snow',
 			String(
