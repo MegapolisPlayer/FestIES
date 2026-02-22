@@ -791,7 +791,7 @@ export const asyncDelay = (time: number) => {
 	);
 };
 
-export const PROGRAM_VERSION = '1.0.4';
+export const PROGRAM_VERSION = '1.0.5';
 
 //own festive mix
 export const DEFAULT_PLAYLIST =
